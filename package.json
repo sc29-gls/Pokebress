@@ -2,10 +2,10 @@
   "name": "bre90ss",
   "version": "1.0.0",
   "description": "",
-  "main": "serverBre90ss_v_next.js",
+  "main": "serverBre90ss.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node serverBre90ss_v_next.js"
+    "start": "node serverBre90ss.js"
   },
   "keywords": [],
   "author": "",
