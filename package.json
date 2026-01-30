@@ -1,17 +1,18 @@
 {
   "name": "bre90ss",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server Pokédex per Render",
   "main": "serverBre90ss.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node serverBre90ss.js"
+    "start": "node serverBre90ss.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^5.2.1"
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }
