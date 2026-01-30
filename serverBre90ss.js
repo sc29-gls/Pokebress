@@ -42,4 +42,5 @@ app.get('/pokedex/:id', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server Pokédex in esecuzione sulla porta ${PORT}`);
     console.log(`Range accettato: 0 - 151`);
+
 });
