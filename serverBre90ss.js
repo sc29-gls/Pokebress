@@ -9,9 +9,8 @@ const PORT = process.env.PORT || 3000;
 
 let pokemonData = {};
 let maxId = 0;
-let ultimo_pokemon = 1025; // Ultimo Pokémon ufficiale al 03/02/2026
+let ultimo_pokemon = 1025; 
 
-// Caricamento database JSON
 try {
     const data = fs.readFileSync('pokebress.json', 'utf8');
     pokemonData = JSON.parse(data);
@@ -24,37 +23,35 @@ try {
     console.error("Errore nel caricamento del file JSON:", err);
 }
 
-// Rotta principale con ID opzionale
 app.get('/pokedex/:id?', (req, res) => {
     let id = req.params.id;
     
-    // Recupera il nome utente dalla query string (es. ?user=nomeutente)
-    // Se presente aggiunge la @ e uno spazio, altrimenti stringa vuota
+    // Recupera il nome utente. Se non c'è, la stringa rimane vuota.
     const utente = req.query.user ? `@${req.query.user} ` : "";
 
-    // CASO RANDOM (se non viene passato l'ID)
-    if (id === undefined) {
+    // GESTIONE RANDOM: si attiva se l'id manca, è vuoto o è la stringa "undefined"
+    if (!id || id.trim() === "" || id === "undefined") {
         const keys = Object.keys(pokemonData);
         if (keys.length === 0) {
-            return res.send(`${utente}bre90sFail bre90sFail Il database è vuoto! bre90sFail bre90sFail`);
+            return res.send(`${utente}bre90sFail Il database è vuoto! bre90sFail`);
         }
         
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const nomeRandom = pokemonData[randomKey];
         
-        return res.send(`${utente}bre90sHype bre90sHype Oggi sei un ${nomeRandom} bre90sHype bre90sHype`);
+        return res.send(`${utente}bre90sHype Oggi sei un ${nomeRandom} bre90sHype`);
     }
 
     const idNumerico = parseInt(id);
 
-    // 1. Controllo validità numerica (formato o range ufficiale)
+    // 1. Controllo validità numerica
     if (isNaN(idNumerico) || idNumerico < 0 || idNumerico > ultimo_pokemon) {
         return res.send(`${utente}bre90sFail bre90sFail L'ID ${id} non è valido. Inserisci un numero tra 0 e ${ultimo_pokemon} bre90sFail bre90sFail`);
     }
 
     const nome = pokemonData[id];
 
-    // 2. Controllo esistenza nome nel database locale
+    // 2. Controllo esistenza nome nel database
     if (nome) {
         res.send(`${utente}bre90sHype bre90sHype Il Pokémon n°${id} è ${nome}! bre90sHype bre90sHype`);
     } else {
