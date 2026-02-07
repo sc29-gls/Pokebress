@@ -1,17 +1,17 @@
 const express = require('express');
 const cors = require('cors'); 
 const fs = require('fs');
-const app = express(); // <--- Questa è la riga che mancava prima
+const app = express();
 
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
+const ULTIMO_POKEMON_UFFICIALE = 1025; 
 
 let pokemonData = {};
 let maxId = 0;
-const ULTIMO_POKEMON_UFFICIALE = 1025; 
 
-// Caricamento database
+// Caricamento database all'avvio
 try {
     const data = fs.readFileSync('pokebress.json', 'utf8');
     pokemonData = JSON.parse(data);
@@ -19,43 +19,56 @@ try {
     if (keys.length > 0) {
         maxId = Math.max(...keys);
     }
+    console.log(`Database caricato: ${keys.length} Pokémon pronti.`);
 } catch (err) {
-    console.error("Errore caricamento JSON:", err);
+    console.error("Errore critico caricamento JSON:", err);
 }
 
-// Funzione Random
+// Funzione per estrarre un Pokémon casuale
 function mandaRandom(res) {
     const keys = Object.keys(pokemonData);
     if (keys.length === 0) return res.send(`bre90sFail Database vuoto!`);
+    
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    return res.send(`Oggi sei un ${pokemonData[randomKey]}! bre90sHype bre90sHype`);
+    const nome = pokemonData[randomKey];
+    return res.send(`Oggi sei un ${nome}! bre90sHype bre90sHype`);
 }
 
-// Rotta
-app.get('/pokedex/:id?', (req, res) => {
-    const idParam = req.params.id;
+// Rotta principale per StreamElements
+app.get('/pokedex', (req, res) => {
+    // Leggiamo l'input dalla query string: ?id=valore
+    const idParam = req.query.id;
 
-    // Se l'input è vuoto o è la variabile non compilata di StreamElements (${1})
-    if (!idParam || idParam.trim() === "" || idParam.includes('$') || idParam === 'undefined') {
+    // Log di debug per vedere cosa arriva dal bot
+    console.log(`Richiesta ricevuta - Input: "${idParam}"`);
+
+    // GESTIONE CASO: Nessun input o variabile non compilata da StreamElements
+    if (!idParam || 
+        idParam.trim() === "" || 
+        idParam === 'undefined' || 
+        idParam === 'null' || 
+        idParam.includes('$')) {
         return mandaRandom(res);
     }
 
     const idNumerico = parseInt(idParam.trim());
 
-    // Se l'utente scrive testo invece di un numero
+    // GESTIONE CASO: L'input non è un numero (es: !p ciao)
     if (isNaN(idNumerico)) {
         return mandaRandom(res);
     }
 
+    // GESTIONE CASO: Numero fuori range ufficiale
     if (idNumerico < 0 || idNumerico > ULTIMO_POKEMON_UFFICIALE) {
         return res.send(`L'ID "${idNumerico}" non è valido. Prova 0-${ULTIMO_POKEMON_UFFICIALE} bre90sFail`);
     }
 
+    // Ricerca nel dizionario
     const nome = pokemonData[idNumerico];
     if (nome) {
-        return res.send(`Il Pokémon n°${idNumerico} è ${nome}! bre90sFail bre90sHype`);
+        return res.send(`Il Pokémon n°${idNumerico} è ${nome}! bre90sHype`);
     } else {
-        return res.send(`Il Pokebress non ha ancora registrato il n°${idNumerico} (max: ${maxId}) bre90sGufata`);
+        return res.send(`Il Pokebress non ha ancora registrato il n°${idNumerico} (max registrato: ${maxId}) bre90sGufata`);
     }
 });
 
