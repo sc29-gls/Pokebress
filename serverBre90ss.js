@@ -1,67 +1,30 @@
-const express = require('express');
-const cors = require('cors'); 
-const fs = require('fs');
-const app = express();
-
-app.use(cors());
-
-const PORT = process.env.PORT || 3000;
-
-let pokemonData = {};
-let maxId = 0;
-const ULTIMO_POKEMON_UFFICIALE = 1025; 
-
-// Caricamento database JSON
-try {
-    const data = fs.readFileSync('pokebress.json', 'utf8');
-    pokemonData = JSON.parse(data);
-    const keys = Object.keys(pokemonData).map(Number);
-    if (keys.length > 0) {
-        maxId = Math.max(...keys);
-    }
-    console.log(`Dati caricati. ID massimo trovato: ${maxId}`);
-} catch (err) {
-    console.error("Errore nel caricamento del file JSON:", err);
-}
-
 app.get('/pokedex/:id?', (req, res) => {
     let idParam = req.params.id;
 
-    // GESTIONE INPUT DA STREAMELEMENTS
-    // Se idParam è vuoto, oppure contiene la stringa letterale della variabile del bot
-    if (!idParam || 
-        idParam.trim() === "" || 
-        idParam === "${1}" || 
-        idParam === "undefined" || 
-        idParam.startsWith("$")) {
+    // 1. Pulizia dell'input: rimuoviamo spazi bianchi o residui
+    const cleanInput = idParam ? idParam.trim() : "";
+    const idNumerico = parseInt(cleanInput);
+
+    // 2. CONTROLLO: È un numero valido tra 0 e 1025?
+    if (!isNaN(idNumerico) && cleanInput !== "" && !cleanInput.startsWith("$")) {
         
-        const keys = Object.keys(pokemonData);
-        if (keys.length === 0) {
-            return res.send(`bre90sFail Il database è vuoto!`);
+        if (idNumerico < 0 || idNumerico > ULTIMO_POKEMON_UFFICIALE) {
+            return res.send(`L'ID "${cleanInput}" non è valido. Prova tra 0 e ${ULTIMO_POKEMON_UFFICIALE} bre90sFail`);
         }
-        const randomKey = keys[Math.floor(Math.random() * keys.length)];
-        const nomeRandom = pokemonData[randomKey];
-        return res.send(`Oggi sei un ${nomeRandom}! bre90sHype bre90sHype`);
+
+        const nome = pokemonData[idNumerico];
+        if (nome) {
+            return res.send(`Il Pokémon n°${idNumerico} è ${nome}! bre90sFail bre90sHype`);
+        } else {
+            return res.send(`Il Pokebress non ha ancora registrato il n°${idNumerico} (max: ${maxId}) bre90sGufata`);
+        }
     }
 
-    // Convertiamo l'input in numero
-    const idNumerico = parseInt(idParam);
-
-    // 2. GESTIONE ID NON VALIDO O OLTRE IL LIMITE
-    if (isNaN(idNumerico) || idNumerico < 0 || idNumerico > ULTIMO_POKEMON_UFFICIALE) {
-        return res.send(`L'ID "${idParam}" non è valido. Prova un numero tra 0 e ${ULTIMO_POKEMON_UFFICIALE} bre90sFail bre90sFail`);
-    }
-
-    // 3. RICERCA NEL DATABASE
-    const nome = pokemonData[idNumerico];
-
-    if (nome) {
-        return res.send(`Il Pokémon n°${idNumerico} è ${nome}! bre90sFail bre90sHype`);
-    } else {
-        return res.send(`Il Pokebress non ha ancora registrato il n°${idNumerico} (max: ${maxId}) bre90sGufata bre90sGufata`);
-    }
-});
-
-app.listen(PORT, () => {
-    console.log(`Server Pokédex in esecuzione sulla porta ${PORT}`);
+    // 3. SE NON È UN NUMERO (o è vuoto, o è ${1}), SCATTA IL RANDOM
+    const keys = Object.keys(pokemonData);
+    if (keys.length === 0) return res.send(`bre90sFail Database vuoto!`);
+    
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+    const nomeRandom = pokemonData[randomKey];
+    return res.send(`Oggi sei un ${nomeRandom}! bre90sHype bre90sHype`);
 });
