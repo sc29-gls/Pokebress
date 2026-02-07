@@ -25,10 +25,16 @@ try {
 }
 
 app.get('/pokedex/:id?', (req, res) => {
-    const idParam = req.params.id;
+    let idParam = req.params.id;
 
-    // 1. GESTIONE INPUT ASSENTE (Random)
-    if (!idParam || idParam.trim() === "") {
+    // GESTIONE INPUT DA STREAMELEMENTS
+    // Se idParam è vuoto, oppure contiene la stringa letterale della variabile del bot
+    if (!idParam || 
+        idParam.trim() === "" || 
+        idParam === "${1}" || 
+        idParam === "undefined" || 
+        idParam.startsWith("$")) {
+        
         const keys = Object.keys(pokemonData);
         if (keys.length === 0) {
             return res.send(`bre90sFail Il database è vuoto!`);
@@ -41,7 +47,7 @@ app.get('/pokedex/:id?', (req, res) => {
     // Convertiamo l'input in numero
     const idNumerico = parseInt(idParam);
 
-    // 2. GESTIONE ID NON VALIDO O OLTRE IL LIMITE ( > 1025 )
+    // 2. GESTIONE ID NON VALIDO O OLTRE IL LIMITE
     if (isNaN(idNumerico) || idNumerico < 0 || idNumerico > ULTIMO_POKEMON_UFFICIALE) {
         return res.send(`L'ID "${idParam}" non è valido. Prova un numero tra 0 e ${ULTIMO_POKEMON_UFFICIALE} bre90sFail bre90sFail`);
     }
@@ -52,7 +58,6 @@ app.get('/pokedex/:id?', (req, res) => {
     if (nome) {
         return res.send(`Il Pokémon n°${idNumerico} è ${nome}! bre90sFail bre90sHype`);
     } else {
-        // Caso in cui l'ID è valido (0-1025) ma non è presente nel file JSON
         return res.send(`Il Pokebress non ha ancora registrato il n°${idNumerico} (max: ${maxId}) bre90sGufata bre90sGufata`);
     }
 });
