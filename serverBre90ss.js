@@ -1,45 +1,43 @@
 const express = require('express');
+const cors = require('cors'); 
 const fs = require('fs');
 const app = express();
-const port = process.env.PORT || 3000;
 
-// Caricamento database Pokémon
-let pokebressData = {};
+app.use(cors());
+
+const PORT = process.env.PORT || 3000;
+
+// Ricava i limii superiore ed inferiore del pokebress.json 
 try {
-    pokebressData = JSON.parse(fs.readFileSync('pokebress.json', 'utf8'));
+    const data = fs.readFileSync('pokebress.json', 'utf8');
+    pokemonData = JSON.parse(data);
+    const keys = Object.keys(pokemonData).map(Number);
+    maxId = Math.max(...keys);
+    minId = Math.min(...keys);
+    console.log(`Dati caricati. ID massimo trovato: ${maxId} || ID minimo trovato: ${minId}`);
 } catch (err) {
-    console.error("Errore lettura JSON:", err);
+    console.error("Errore nel caricamento del file JSON:", err);
 }
 
-const keys = Object.keys(pokebressData);
+app.get('/pokebress/:id', (req, res) => {
+    const id = req.params.id;
+    const idNumerico = parseInt(id);
 
-app.get('/pokebress', (req, res) => {
-    // Otteniamo tutte le chiavi della query (es. se l'URL è ?45, Object.keys restituirà ["45"])
-    const queryKeys = Object.keys(req.query);
-    const rawId = queryKeys.length > 0 ? queryKeys[0].trim() : "";
-
-    console.log(`ID ricevuto dalla query: ${rawId}`);
-
-    // LOGICA:
-    // 1. Verifichiamo che l'ID non sia vuoto
-    // 2. Verifichiamo che non sia il testo letterale della variabile del bot
-    // 3. Verifichiamo se l'ID esiste nel JSON
-    if (rawId !== "" && 
-        rawId !== "$(1)" && 
-        rawId !== "$(query)" && 
-        pokebressData.hasOwnProperty(rawId)) {
-        
-        const pokemonName = pokebressData[rawId];
-        return res.send(`il pokemon n° ${rawId} è ${pokemonName}`);
+    // 1. ID input non presente nel pokebress.json
+    if (isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId) {
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        const randomPokemon = pokebressData[randomKey];
+        console.log(`Id random = ${randomKey} || pokemon associato = ${randomPokemon}`);
+        return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     }
 
-    // FALLBACK: Caso Random
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    const randomPokemon = pokebressData[randomKey];
     
-    res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
+    // 2. ID input presente nel pokebress.json
+    const nome = pokemonData[id];
+    console.log(`Id scelto = ${id} || pokemon associato = ${nome}`);
+    res.send(`bre90sHype bre90sHype Il Pokémon n°${id} è ${nome}! bre90sHype bre90sHype `);
 });
 
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Server attivo sulla porta ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server Pokébress in esecuzione sulla porta ${PORT}`);
 });
