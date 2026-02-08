@@ -14,20 +14,23 @@ try {
 const keys = Object.keys(pokebressData);
 
 app.get('/pokebress', (req, res) => {
-    const inputId = req.query.id;
+    // Prendiamo l'ID e rimuoviamo eventuali spazi bianchi extra
+    const rawId = req.query.id ? req.query.id.trim() : "";
 
-    // LOGICA: Se l'ID è valido e presente nel JSON
-    if (inputId && inputId !== "$(1)" && inputId !== "$(query)" && pokebressData[inputId]) {
-        const pokemonName = pokebressData[inputId];
-        // Restituisce solo la parte finale della frase
-        return res.send(`il pokemon n° ${inputId} è ${pokemonName}`);
+    // LOGICA: 
+    // 1. Verifichiamo che l'ID non sia vuoto
+    // 2. Verifichiamo che non sia una variabile non espansa di StreamElements
+    // 3. Verifichiamo se l'ID esiste come chiave nel file JSON
+    console.log(`id passato in input ${rawId}`};
+    if (rawId !== "" && rawId !== "$(1)" && rawId !== "$(query)" && pokebressData.hasOwnProperty(rawId)) {
+        const pokemonName = pokebressData[rawId];
+        return res.send(`il pokemon n° ${rawId} è ${pokemonName}`);
     }
 
-    // FALLBACK: Caso Random
+    // FALLBACK: Se non trova l'ID o l'input è nullo/testuale, scatta il Random
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
     const randomPokemon = pokebressData[randomKey];
     
-    // Restituisce solo la frase randomica pura
     res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
 });
 
