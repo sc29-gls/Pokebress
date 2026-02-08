@@ -17,33 +17,45 @@ try {
     keysArray = Object.keys(pokemonData);
     maxId = Math.max(...numericKeys);
     minId = Math.min(...numericKeys);
+    console.log(`[STARTUP] Dati caricati. Range: ${minId}-${maxId}. Totale Pokémon: ${keysArray.length}`);
 } catch (err) {
-    console.error("Errore caricamento JSON:", err);
+    console.error("[ERROR] Fallimento caricamento JSON:", err);
 }
 
-// Gestisce sia /pokebress/ che /pokebress/ID
 app.get('/pokebress/:id?', (req, res) => {
+    // LOG FONDAMENTALE: Vediamo cosa arriva da StreamElements
+    console.log(`[REQUEST] URL completo chiamato: ${req.originalUrl}`);
+    console.log(`[PARAM] req.params.id grezzo: "${req.params.id}"`);
+
     let id = req.params.id;
 
-    // Se StreamElements manda "?" o "$(1)", lo puliamo
+    // Pulizia dell'input
     if (id) {
         id = id.replace('?', '').trim();
     }
 
     const idNumerico = parseInt(id);
 
-    // LOGICA RANDOM: scatta se l'ID manca, è testuale, o fuori range
+    // LOG LOGICA: Vediamo come viene interpretato l'ID
+    console.log(`[PROCESS] ID interpretato: "${id}" | ID Numerico: ${idNumerico}`);
+
+    // LOGICA RANDOM
     if (!id || id === "" || id === "$(1)" || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[id]) {
         const randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
         const randomPokemon = pokemonData[randomKey];
-        return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
+        
+        const respRandom = `oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`;
+        console.log(`[RESPONSE] Caso RANDOM -> Inviato: ${respRandom}`);
+        return res.send(respRandom);
     }
 
     // LOGICA SPECIFICA
     const nome = pokemonData[id];
-    res.send(`bre90sHype bre90sHype Il Pokémon n°${id} è ${nome}! bre90sHype bre90sHype`);
+    const respSpecifica = `bre90sHype bre90sHype Il Pokémon n°${id} è ${nome}! bre90sHype bre90sHype`;
+    console.log(`[RESPONSE] Caso SPECIFICO -> Inviato: ${respSpecifica}`);
+    res.send(respSpecifica);
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server attivo sulla porta ${PORT}`);
+    console.log(`[SERVER] In ascolto sulla porta ${PORT}`);
 });
