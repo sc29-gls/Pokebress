@@ -4,7 +4,6 @@ const fs = require('fs');
 const app = express();
 
 app.use(cors());
-
 const PORT = process.env.PORT || 3000;
 
 let pokemonData = {};
@@ -22,28 +21,29 @@ try {
     console.error("Errore caricamento JSON:", err);
 }
 
-// IL FIX: :id? con il punto di domanda lo rende opzionale
+// Gestisce sia /pokebress/ che /pokebress/ID
 app.get('/pokebress/:id?', (req, res) => {
-    const id = req.params.id;
-    const idNumerico = parseInt(id);
-    console.log(`https://pokebress.onrender.com/pokebress/${id}`)
+    let id = req.params.id;
 
-    // Se l'ID manca, è la stringa $(1), non è un numero o è fuori range
-    if (!id || id === "$(1)" || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[id]) {
+    // Se StreamElements manda "?" o "$(1)", lo puliamo
+    if (id) {
+        id = id.replace('?', '').trim();
+    }
+
+    const idNumerico = parseInt(id);
+
+    // LOGICA RANDOM: scatta se l'ID manca, è testuale, o fuori range
+    if (!id || id === "" || id === "$(1)" || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[id]) {
         const randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
         const randomPokemon = pokemonData[randomKey];
-        console.log(`Id random = ${randomKey} || pokemon associato = ${randomPokemon}`);
         return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     }
 
-    // Caso ID valido
+    // LOGICA SPECIFICA
     const nome = pokemonData[id];
-    console.log(`Id scelto = ${id} || pokemon associato = ${nome}`);
-    res.send(`Il Pokémon n°${id} è ${nome}!`);
+    res.send(`bre90sHype bre90sHype Il Pokémon n°${id} è ${nome}! bre90sHype bre90sHype`);
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server Pokébress attivo sulla porta ${PORT}`);
+    console.log(`Server attivo sulla porta ${PORT}`);
 });
-
-
