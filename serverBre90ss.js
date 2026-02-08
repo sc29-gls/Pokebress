@@ -33,7 +33,7 @@ app.get('/pokebress', (req, res) => {
     if (keys.length > 0) {
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const randomPokemon = pokebressData[randomKey];
-        console.log(`Input non valido "${inputId}" || ID randomizzato: (${randomKey}) -> ${randomKey}`);
+        console.log(`Input non valido "${inputId}" || ID randomizzato: (${randomKey}) -> ${randomPokemon}`);
         return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     } else {
         return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
@@ -43,5 +43,6 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
 
 
