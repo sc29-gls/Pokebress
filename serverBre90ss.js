@@ -26,6 +26,7 @@ try {
 app.get('/pokebress/:id?', (req, res) => {
     const id = req.params.id;
     const idNumerico = parseInt(id);
+    console.log(`https://pokebress.onrender.com/pokebress/${id}`)
 
     // Se l'ID manca, è la stringa $(1), non è un numero o è fuori range
     if (!id || id === "$(1)" || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[id]) {
@@ -44,4 +45,5 @@ app.get('/pokebress/:id?', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server Pokébress attivo sulla porta ${PORT}`);
 });
+
 
