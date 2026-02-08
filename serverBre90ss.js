@@ -14,20 +14,26 @@ try {
 const keys = Object.keys(pokebressData);
 
 app.get('/pokebress', (req, res) => {
-    // Prendiamo l'ID e rimuoviamo eventuali spazi bianchi extra
-    const rawId = req.query.id ? req.query.id.trim() : "";
+    // Otteniamo tutte le chiavi della query (es. se l'URL è ?45, Object.keys restituirà ["45"])
+    const queryKeys = Object.keys(req.query);
+    const rawId = queryKeys.length > 0 ? queryKeys[0].trim() : "";
 
-    // LOGICA: 
+    console.log(`ID ricevuto dalla query: ${rawId}`);
+
+    // LOGICA:
     // 1. Verifichiamo che l'ID non sia vuoto
-    // 2. Verifichiamo che non sia una variabile non espansa di StreamElements
-    // 3. Verifichiamo se l'ID esiste come chiave nel file JSON
-    console.log(`id passato in input ${rawId}`);
-    if (rawId !== "" && rawId !== "$(1)" && rawId !== "$(query)" && pokebressData.hasOwnProperty(rawId)) {
+    // 2. Verifichiamo che non sia il testo letterale della variabile del bot
+    // 3. Verifichiamo se l'ID esiste nel JSON
+    if (rawId !== "" && 
+        rawId !== "$(1)" && 
+        rawId !== "$(query)" && 
+        pokebressData.hasOwnProperty(rawId)) {
+        
         const pokemonName = pokebressData[rawId];
         return res.send(`il pokemon n° ${rawId} è ${pokemonName}`);
     }
 
-    // FALLBACK: Se non trova l'ID o l'input è nullo/testuale, scatta il Random
+    // FALLBACK: Caso Random
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
     const randomPokemon = pokebressData[randomKey];
     
@@ -37,4 +43,3 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server attivo sulla porta ${port}`);
 });
-
