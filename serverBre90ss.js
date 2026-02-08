@@ -28,7 +28,7 @@ app.get('/pokebress', (req, res) => {
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const randomPokemon = pokebressData[randomKey];
         console.log(`ID non valido: ${inputId}`);
-        console.log(`ID randomizzato: ${inputId} -> ${pokemonName}`);
+        console.log(`ID randomizzato: ${inputId} -> ${randomPokemon}`);
         res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     } else {
         res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
