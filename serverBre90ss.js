@@ -31,14 +31,17 @@ app.get('/pokebress/:id?', (req, res) => {
     if (!id || id === "$(1)" || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[id]) {
         const randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
         const randomPokemon = pokemonData[randomKey];
+        console.log(`Id random = ${randomKey} || pokemon associato = ${randomPokemon}`);
         return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     }
 
     // Caso ID valido
     const nome = pokemonData[id];
+    console.log(`Id scelto = ${id} || pokemon associato = ${nome}`);
     res.send(`Il Pokémon n°${id} è ${nome}!`);
 });
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server Pokébress attivo sulla porta ${PORT}`);
 });
+
