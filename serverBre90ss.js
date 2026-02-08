@@ -14,29 +14,32 @@ try {
 const keys = Object.keys(pokebressData);
 
 app.get('/pokebress', (req, res) => {
-    const inputId = req.query.id;
+    let inputId = req.query.id;
 
-    // Verifica se l'ID è fornito e presente nel database
-    if (inputId && inputId !== "$(1)" && inputId !== "$(query)" && pokebressData[inputId]) {
+    // 1. PULIZIA DELL'INPUT
+    // Se l'input contiene "!p", lo rimuoviamo e prendiamo solo quello che resta (trim elimina gli spazi)
+    if (inputId) {
+        inputId = inputId.replace('!p', '').trim();
+    }
+
+    // 2. LOGICA DI RICERCA (Se l'ID pulito esiste nel database)
+    if (inputId && pokebressData[inputId]) {
         const pokemonName = pokebressData[inputId];
         console.log(`ID richiesto: ${inputId} -> ${pokemonName}`);
         return res.send(`il pokemon n° ${inputId} è ${pokemonName}`);
     }
 
-    // Caso Random (Fallback)
+    // 3. LOGICA RANDOM (Fallback se l'input è vuoto, è solo "!p" o l'ID non esiste)
     if (keys.length > 0) {
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const randomPokemon = pokebressData[randomKey];
-        console.log(`ID non valido: ${inputId} || ID randomizzato: ${randomPokemon} -> ${randomPokemon}`);
-        res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
+        console.log(`Input non valido ${inputID} || ID randomizzato: (${req.query.id}) -> ${randomKey}`);
+        return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     } else {
-        res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
+        return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
     }
 });
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
-
-
-
