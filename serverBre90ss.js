@@ -10,7 +10,6 @@ let pokemonData = {};
 let keysArray = [];
 let maxId = 0, minId = 0;
 
-// Caricamento dati
 try {
     const data = fs.readFileSync('pokebress.json', 'utf8');
     pokemonData = JSON.parse(data);
@@ -18,48 +17,39 @@ try {
     keysArray = Object.keys(pokemonData);
     maxId = Math.max(...numericKeys);
     minId = Math.min(...numericKeys);
-    console.log(`[STARTUP] Dati caricati. Range: ${minId}-${maxId}`);
+    console.log(`[STARTUP] Server pronto. Range: ${minId}-${maxId}`);
 } catch (err) {
-    console.error("[ERROR] Fallimento caricamento JSON:", err);
+    console.error("[ERROR] Caricamento JSON fallito:", err);
 }
 
-// Rotta flessibile
-app.get('/pokebress/:id?', (req, res) => {
-    let rawId = req.params.id ? req.params.id.trim() : "";
-    console.log(`[LOG] Input ricevuto: "${rawId}"`);
+app.get('/pokebress', (req, res) => {
+    // Prendiamo l'input da ?id=...
+    let rawId = req.query.id ? req.query.id.trim() : "";
+    console.log(`[LOG] Chiamata ricevuta. Input: "${rawId}"`);
 
     let idFinale = "";
 
-    // 1. Se passa ${1}q o variabile non compilata, deve rimanere solo q
-    if (rawId.includes("$") || rawId === "q") {
+    // Se l'input contiene la variabile non compilata o la nostra q di sicurezza
+    if (rawId.includes("$") || rawId === "q" || !rawId) {
         idFinale = "q"; 
-        console.log(`[LOGIC] Variabile bot o 'q' rilevata. Id finale: "q"`);
+        console.log(`[LOGIC] Caso Random (variabile o vuoto).`);
     } 
-    // 2. Se c'è un numero (es. 45q), teniamo solo il numero
+    // Se c'è un numero, puliamo tutto il resto
     else if (/\d/.test(rawId)) { 
         idFinale = rawId.replace(/\D/g, ''); 
-        console.log(`[LOGIC] Numero rilevato. Pulito in: "${idFinale}"`);
-    } 
-    // 3. Fallback
-    else {
-        idFinale = rawId || "q";
+        console.log(`[LOGIC] Numero rilevato: ${idFinale}`);
     }
 
     const idNumerico = parseInt(idFinale);
 
-    // LOGICA RANDOM (se non è un numero, fuori range o non esiste)
     if (!idFinale || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[idFinale]) {
         const randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
         const randomPokemon = pokemonData[randomKey];
-        
-        console.log(`[RESPONSE] RANDOM -> ${randomKey}`);
         return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     }
 
-    // RISPOSTA SPECIFICA
     const nome = pokemonData[idFinale];
-    console.log(`[RESPONSE] SPECIFICO -> ${idFinale}: ${nome}`);
-    res.send(`bre90sHype bre90sHype Il Pokémon n°${idFinale} è ${nome}! bre90sHype bre90sHype`);
+    res.send(`Il Pokémon n°${idFinale} è ${nome}!`);
 });
 
 app.listen(PORT, '0.0.0.0', () => {
