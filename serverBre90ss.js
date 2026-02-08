@@ -21,7 +21,7 @@ app.get('/pokebress', (req, res) => {
     // 1. Verifichiamo che l'ID non sia vuoto
     // 2. Verifichiamo che non sia una variabile non espansa di StreamElements
     // 3. Verifichiamo se l'ID esiste come chiave nel file JSON
-    console.log(`id passato in input ${rawId}`};
+    console.log(`id passato in input ${rawId}`);
     if (rawId !== "" && rawId !== "$(1)" && rawId !== "$(query)" && pokebressData.hasOwnProperty(rawId)) {
         const pokemonName = pokebressData[rawId];
         return res.send(`il pokemon n° ${rawId} è ${pokemonName}`);
@@ -37,3 +37,4 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server attivo sulla porta ${port}`);
 });
+
