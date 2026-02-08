@@ -19,7 +19,7 @@ app.get('/pokebress', (req, res) => {
     // 1. PULIZIA DELL'INPUT
     // Se l'input contiene "!p", lo rimuoviamo e prendiamo solo quello che resta (trim elimina gli spazi)
     if (inputId) {
-        inputId = inputId.replace('!p', '').trim();
+        inputId = inputId.split('!').pop().trim();
     }
 
     // 2. LOGICA DI RICERCA (Se l'ID pulito esiste nel database)
@@ -43,6 +43,7 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
 
 
 
