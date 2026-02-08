@@ -31,7 +31,7 @@ app.get('/pokebress/:id?', (req, res) => {
 
     // Pulizia dell'input
     if (id) {
-        id = id.replace('?', '').trim();
+        id = id.replace('q', '').trim();
     }
 
     const idNumerico = parseInt(id);
@@ -59,3 +59,4 @@ app.get('/pokebress/:id?', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`[SERVER] In ascolto sulla porta ${PORT}`);
 });
+
