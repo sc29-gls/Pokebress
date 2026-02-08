@@ -17,46 +17,46 @@ try {
     keysArray = Object.keys(pokemonData);
     maxId = Math.max(...numericKeys);
     minId = Math.min(...numericKeys);
-    console.log(`[STARTUP] Dati caricati. Range: ${minId}-${maxId}. Totale Pokémon: ${keysArray.length}`);
+    console.log(`[STARTUP] Dati caricati. Range: ${minId}-${maxId}`);
 } catch (err) {
     console.error("[ERROR] Fallimento caricamento JSON:", err);
 }
 
 app.get('/pokebress/:id?', (req, res) => {
-    // LOG FONDAMENTALE: Vediamo cosa arriva da StreamElements
-    console.log(`[REQUEST] URL completo chiamato: ${req.originalUrl}`);
-    console.log(`[PARAM] req.params.id grezzo: "${req.params.id}"`);
+    let idRaw = req.params.id ? req.params.id.trim() : "";
+    console.log(`[REQUEST] Raw ricevuto: "${idRaw}"`);
 
-    let id = req.params.id;
+    let idFinale = "";
 
-    // Pulizia dell'input
-    if (id) {
-        id = id.replace('q', '').trim();
+    // LOGICA RICHIESTA:
+    // Se l'input è ESATTAMENTE "q", lo teniamo così com'è (andrà in random dopo)
+    if (idRaw === "q") {
+        idFinale = "q";
+        console.log(`[LOGIC] Rilevata 'q' singola. Nessun trim.`);
+    } else {
+        // Altrimenti, trimmiamo via tutto quello che non è un numero
+        idFinale = idRaw.replace(/\D/g, '');
+        console.log(`[LOGIC] Input misto o numerico. Risultato pulito: "${idFinale}"`);
     }
 
-    const idNumerico = parseInt(id);
+    const idNumerico = parseInt(idFinale);
 
-    // LOG LOGICA: Vediamo come viene interpretato l'ID
-    console.log(`[PROCESS] ID interpretato: "${id}" | ID Numerico: ${idNumerico}`);
-
-    // LOGICA RANDOM
-    if (!id || id === "" || id === "$(1)" || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[id]) {
+    // CONTROLLO PER RISPOSTA
+    // Se non è un numero (quindi è "q" o vuoto) o fuori range o non esiste
+    if (!idFinale || isNaN(idNumerico) || idNumerico < minId || idNumerico > maxId || !pokemonData[idFinale]) {
         const randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
         const randomPokemon = pokemonData[randomKey];
         
-        const respRandom = `oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`;
-        console.log(`[RESPONSE] Caso RANDOM -> Inviato: ${respRandom}`);
-        return res.send(respRandom);
+        console.log(`[RESPONSE] RANDOM -> Mandato ${randomKey}`);
+        return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     }
 
-    // LOGICA SPECIFICA
-    const nome = pokemonData[id];
-    const respSpecifica = `bre90sHype bre90sHype Il Pokémon n°${id} è ${nome}! bre90sHype bre90sHype`;
-    console.log(`[RESPONSE] Caso SPECIFICO -> Inviato: ${respSpecifica}`);
-    res.send(respSpecifica);
+    // RISPOSTA SPECIFICA
+    const nome = pokemonData[idFinale];
+    console.log(`[RESPONSE] SPECIFICO -> ID ${idFinale}: ${nome}`);
+    res.send(`bre90sHype bre90sHype Il Pokémon n°${idFinale} è ${nome}! bre90sHype bre90sHype`);
 });
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`[SERVER] In ascolto sulla porta ${PORT}`);
 });
-
