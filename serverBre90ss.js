@@ -5,8 +5,22 @@ const port = process.env.PORT || 3000;
 
 // Caricamento database Pokémon
 let pokebressData = {};
+let maxId = 0;  // inizializza variabile indice massimo dell'elenco
+let minId = 0;  // inizializza variabile indice minimo dell'elenco
+let ultimo_pokemon = 1025;  // ultimo pokemon inserito nel pokedex da gamefreak @03/02/2026
+
 try {
-    pokebressData = JSON.parse(fs.readFileSync('pokebress.json', 'utf8'));
+const fileContent = fs.readFileSync('pokebress.json', 'utf8');
+    pokebressData = JSON.parse(fileContent);
+    
+    // 1. Estraiamo le chiavi e convertiamole subito in numeri
+    const keys = Object.keys(pokebressData).map(Number);
+
+    // 2. Calcoliamo min e max solo se il database non è vuoto
+    if (keys.length > 0) {
+        maxId = Math.max(...keys);
+        minId = Math.min(...keys);
+    }
 } catch (err) {
     console.error("Errore lettura JSON:", err);
 }
@@ -15,27 +29,42 @@ const keys = Object.keys(pokebressData);
 
 app.get('/pokebress', (req, res) => {
     let inputId = req.query.id;
-
-    // 1. PULIZIA DELL'INPUT
-    // Se l'input contiene "!p", lo rimuoviamo e prendiamo solo quello che resta (trim elimina gli spazi)
-    if (inputId) {
-        inputId = inputId.replace('!pokebress', '').trim();
+    let comando_twitch = ''
+    const match = inputId.match(/^(!\w+)\s*/);
+    // 0. PULIZIA DELL'INPUT
+    // Se l'input contiene "!comando_twitch", lo rimuoviamo e prendiamo solo quello che resta (trim elimina gli spazi)
+    if (match) {
+        comando_twitch = match[1]; // Salva "!comando_twitch" 
+        inputId = inputId.replace(match[0], '').trim(); // Rimuove tutto il blocco "comando_twitch" dall'input
     }
 
-    // 2. LOGICA DI RICERCA (Se l'ID pulito esiste nel database)
+    // 1. LOGICA DI RICERCA (Se l'ID pulito esiste nel database)
     if (inputId && pokebressData[inputId]) {
         const pokemonName = pokebressData[inputId];
         console.log(`ID richiesto: ${inputId} -> ${pokemonName}`);
         return res.send(`il pokemon n° ${inputId} è ${pokemonName}`);
     }
 
-    // 3. LOGICA RANDOM (Fallback se l'input è vuoto, è solo "!p" o l'ID non esiste)
-    if (keys.length > 0) {
+    // 2. LOGICA RANDOM (Fallback se l'input è vuoto)
+    if (inputId === "" && keys.length > 0) {
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const randomPokemon = pokebressData[randomKey];
-        console.log(`Input non valido "${inputId}" || ID randomizzato: (${randomKey}) -> ${randomPokemon}`);
+        console.log(`Input vuoto || ID randomizzato: (${randomKey}) -> ${randomPokemon}`);
         return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
-    } else {
+    } 
+
+    // 3. LOGICA INPUT NON ANCORA DEFINITI -> tra maxId+1 e 1025
+    if (inputId >= maxId+1 && inputId <= ultimo_pokemon && keys.length > 0) {
+        console.log(`Input non ancora presente ${inputId} -> Fornire limiti operativi`);
+        return res.send(`ad oggi puoi consultare il pokebress tra ${minId} e ${maxId} (@tha_acsam sta lavorando all'elenco completo...)`);
+    }
+
+    // 4. LOGICA INPUT ERRATO
+    if (keys.length > 0) {
+        console.log(`Input non valido ${inputId} -> Fornire istruzioni comando`);
+        return res.send(`il comando funziona nei seguenti casi: 1. "${comando_twitch}" -> che pokebress sei || 2. "${comando_twitch}" ### -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId})`);
+    }
+    else {
         return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
     }
 });
@@ -43,9 +72,3 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
-
-
-
-
-
-
