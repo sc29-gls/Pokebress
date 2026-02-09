@@ -3,9 +3,12 @@ comando da aggiungere a streamelements da chat
 	
 
 per lanciare in locale
+-----------------------
 da terminale scrivere:
-	npm init -y
-	npm install express cors
-	node serverBre90ss.js
+1) npm init -y
+2) npm install express cors
+3) node serverBre90ss.js
+------------------------
 da browser scrivere
-  http://localhost:3000/pokebress?id=!pokebress%2025
+1) http://localhost:3000/pokebress?id=!pokebress%2025
+dove "!pokebress%2025" è la codifica del !pokebress 25
