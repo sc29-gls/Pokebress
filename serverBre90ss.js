@@ -62,7 +62,7 @@ app.get('/pokebress', (req, res) => {
     // 4. LOGICA INPUT ERRATO
     if (keys.length > 0) {
         console.log(`Input non valido ${inputId} -> Fornire istruzioni comando`);
-        return res.send(`il comando funziona nei seguenti casi: 1. "${comando_twitch}" -> che pokebress sei || 2. "${comando_twitch}" ### -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId})`);
+        return res.send(`il comando funziona nei seguenti casi: 1. "${comando_twitch}" -> che pokebress sei || 2. "${comando_twitch} ###" -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId})`);
     }
     else {
         return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
@@ -72,3 +72,4 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
