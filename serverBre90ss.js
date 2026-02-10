@@ -55,20 +55,25 @@ app.get('/pokebress', (req, res) => {
 
     // 3. LOGICA INPUT NON ANCORA DEFINITI -> tra maxId+1 e 1025
     if (inputId >= maxId+1 && inputId <= ultimo_pokemon && keys.length > 0) {
-        console.log(`Input non ancora presente ${inputId} -> Fornire limiti operativi`);
+        console.log(`Input non ancora presente "${inputId}" -> Fornire limiti operativi`);
         return res.send(`ad oggi puoi consultare il pokebress tra ${minId} e ${maxId} (@tha_acsam sta lavorando all'elenco completo...)`);
     }
 
     // 4. LOGICA PER TRACCIARE PING NEI LOG -> il server si spegne se per 15 minuti rimane inattivo
     if (inputId === 'PING' && keys.length > 0) {
-        console.log(`Input ${inputId} -> Fornire messaggio ping avvenuto correttamente`);
+        console.log(`Input "${inputId}" -> Fornire messaggio ping avvenuto correttamente`);
         return res.send(`PING al server avvenuto correttamente`);
     }
 
-    // 5. LOGICA INPUT ERRATO
+    // 5. VISUALIZZAZIONE ELENCO COMPLETO
+    if (inputId === 'lista' && keys.length > 0) {
+        console.log(`Input "${inputId}" -> Fornire link a pokebress.json`);
+        return res.send(`qui trovi il file contenente tutto l'elenco attuale -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json`)
+
+    // 6. LOGICA INPUT ERRATO
     if (keys.length > 0) {
-        console.log(`Input non valido ${inputId} -> Fornire istruzioni comando`);
-        return res.send(`il comando funziona nei seguenti casi: 1. "${comando_twitch}" -> che pokebress sei || 2. "${comando_twitch} ###" -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId})`);
+        console.log(`Input non valido "${inputId}" -> Fornire istruzioni comando`);
+        return res.send(`il comando funziona nei seguenti casi: 1. "${comando_twitch}" -> che pokebress sei || 2. "${comando_twitch} ###" -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId}) || 3. "${comando_twitch} lista" -> file contenente tutto l'elenco`);
     }
     else {
         return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
