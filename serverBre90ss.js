@@ -49,7 +49,7 @@ app.get('/pokebress', (req, res) => {
     if (inputId === "" && keys.length > 0) {
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const randomPokemon = pokebressData[randomKey];
-        console.log(`Input vuoto || ID randomizzato: (${randomKey}) -> ${randomPokemon}`);
+        console.log(`Input vuoto || ID randomizzato: ${randomKey} -> ${randomPokemon}`);
         return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
     } 
 
@@ -59,7 +59,13 @@ app.get('/pokebress', (req, res) => {
         return res.send(`ad oggi puoi consultare il pokebress tra ${minId} e ${maxId} (@tha_acsam sta lavorando all'elenco completo...)`);
     }
 
-    // 4. LOGICA INPUT ERRATO
+    // 4. LOGICA PER TRACCIARE PING NEI LOG -> il server si spegne se per 15 minuti rimane inattivo
+    if (inputId === 'PING' && keys.length > 0) {
+        console.log(`Input ${inputId} -> Fornire messaggio ping avvenuto correttamente`);
+        return res.send(`PING al server avvenuto correttamente`);
+    }
+
+    // 5. LOGICA INPUT ERRATO
     if (keys.length > 0) {
         console.log(`Input non valido ${inputId} -> Fornire istruzioni comando`);
         return res.send(`il comando funziona nei seguenti casi: 1. "${comando_twitch}" -> che pokebress sei || 2. "${comando_twitch} ###" -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId})`);
@@ -72,4 +78,3 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
-
