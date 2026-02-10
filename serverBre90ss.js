@@ -61,8 +61,8 @@ app.get('/pokebress', (req, res) => {
 
     // 4. LOGICA PER TRACCIARE PING NEI LOG -> il server si spegne se per 15 minuti rimane inattivo
     if (inputId === 'PING' && keys.length > 0) {
-        console.log(`Input "${inputId}" -> Fornire messaggio ping avvenuto correttamente`);
-        return res.send(`PING al server avvenuto correttamente`);
+        console.log(`Input "${inputId}" -> Fornire messaggio PONG per PING ricevuto`);
+        return res.send("PONG! Il server è online e risponde correttamente.");
     }
 
     // 5. VISUALIZZAZIONE ELENCO COMPLETO
@@ -84,3 +84,4 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
