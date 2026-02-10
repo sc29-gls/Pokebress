@@ -1,5 +1,5 @@
 comando da aggiungere a streamelements da chat 
-	!command add !pokebress $(urlfetch https://pokebress.onrender.com/pokebress?id=$(queryescape ${0:})) bre90sHype bre90sHype
+!command add !pokebress $(urlfetch https://pokebress.onrender.com/pokebress?id=$(queryescape ${0:})) bre90sHype bre90sHype
 	
 
 per lanciare in locale
