@@ -69,6 +69,7 @@ app.get('/pokebress', (req, res) => {
     if (inputId === 'lista' && keys.length > 0) {
         console.log(`Input "${inputId}" -> Fornire link a pokebress.json`);
         return res.send(`qui trovi il file contenente tutto l'elenco attuale -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json`)
+    }
 
     // 6. LOGICA INPUT ERRATO
     if (keys.length > 0) {
