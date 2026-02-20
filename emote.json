@@ -1,0 +1,98 @@
+{
+  "6": {
+    "nome_pokemon": "Charizard",
+    "emote": "PokCharizard"
+  },
+  "9": {
+    "nome_pokemon": "Blastoise",
+    "emote": "PokBlastoise"
+  },
+  "25": {
+    "nome_pokemon": "Pikachu",
+    "emote": "PokPikachu"
+  },
+  "68": {
+    "nome_pokemon": "Machamp",
+    "emote": "PokMachamp"
+  },
+  "94": {
+    "nome_pokemon": "Gengar",
+    "emote": "PokGengar"
+  },
+  "150": {
+    "nome_pokemon": "Mewtwo",
+    "emote": "PokMewtwo"
+  },
+  "196": {
+    "nome_pokemon": "Espeon",
+    "emote": "alepreSilvio"
+  },
+  "205": {
+    "nome_pokemon": "Forretress",
+    "emote": "polyPigna"
+  },
+  "212": {
+    "nome_pokemon": "Scizor",
+    "emote": "PokScizor"
+  },
+  "245": {
+    "nome_pokemon": "Suicune",
+    "emote": "PokSuicune"
+  },
+  "254": {
+    "nome_pokemon": "Sceptile",
+    "emote": "PokSceptile"
+  },
+  "257": {
+    "nome_pokemon": "Blaziken",
+    "emote": "PokBlaziken"
+  },
+  "282": {
+    "nome_pokemon": "Gardevoir",
+    "emote": "PokGardevoir"
+  },
+  "395": {
+    "nome_pokemon": "Empoleon",
+    "emote": "PokEmpoleon"
+  },
+  "445": {
+    "nome_pokemon": "Garchomp",
+    "emote": "PokGarchomp"
+  },
+  "448": {
+    "nome_pokemon": "Lucario",
+    "emote": "PokLucario"
+  },
+  "453": {
+    "nome_pokemon": "Croagunk",
+    "emote": "PokCroagunk"
+  },
+  "461": {
+    "nome_pokemon": "Weavile",
+    "emote": "PokWeavile"
+  },
+  "491": {
+    "nome_pokemon": "Darkrai",
+    "emote": "PokDarkrai"
+  },
+  "549": {
+    "nome_pokemon": "Lilligant",
+    "emote": "bre90sLilliBre"
+  },
+  "609": {
+    "nome_pokemon": "Chandelure",
+    "emote": "PokChandelure"
+  },
+  "654": {
+    "nome_pokemon": "Braixen",
+    "emote": "PokBraixen"
+  },
+  "681": {
+    "nome_pokemon": "Aegislash",
+    "emote": "PokAegislash"
+  },
+  "724": {
+    "nome_pokemon": "Decidueye",
+    "emote": "PokDecidueye"
+  }
+}

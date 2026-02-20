@@ -3,12 +3,15 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
 
+
 // Caricamento database Pokémon
 let pokebressData = {};
+let emoteData = {};
 let maxId = 0;  // inizializza variabile indice massimo dell'elenco
 let minId = 0;  // inizializza variabile indice minimo dell'elenco
 let ultimo_pokemon = 1025;  // ultimo pokemon inserito nel pokedex da gamefreak @03/02/2026
 
+// carica json contenente lista pokebress
 try {
 const fileContent = fs.readFileSync('pokebress.json', 'utf8');
     pokebressData = JSON.parse(fileContent);
@@ -22,7 +25,17 @@ const fileContent = fs.readFileSync('pokebress.json', 'utf8');
         minId = Math.min(...keys);
     }
 } catch (err) {
-    console.error("Errore lettura JSON:", err);
+    console.error("Errore lettura JSON pokebress.json:", err);
+}
+
+// carica json contenente lista emotes
+try {
+    emoteData = require('./emote.json');
+    console.log("✅ emote.json caricato correttamente.");
+} catch (err) {
+    console.error("⚠️ AVVISO: Errore nel caricamento di emote.json. Il bot funzionerà senza emote personalizzate.");
+    console.error("Dettaglio errore:", err.message);
+    emoteData = {}; // Inizializzo vuoto per evitare crash successivi
 }
 
 const keys = Object.keys(pokebressData);
@@ -42,7 +55,17 @@ app.get('/pokebress', (req, res) => {
     if (inputId && pokebressData[inputId]) {
         const pokemonName = pokebressData[inputId];
         console.log(`ID richiesto: ${inputId} -> ${pokemonName}`);
-        return res.send(`il pokemon n° ${inputId} è ${pokemonName}`);
+        let message;
+        if (emoteData[inputId]) {
+            const nomePkm = emoteData[randomKey].nome_pokemon;
+            const emotePkm = emoteData[randomKey].emote;
+            console.log(`Emote ${emotePkm} richiesta per pokemon ${nomePkm}`)
+            message = `il pokemon n° ${inputId} è ${emotePkm} ${pokemonName} ${emotePkm}`
+        }
+        else {
+            message = `il pokemon n° ${inputId} è ${pokemonName}`
+        }
+        return res.send(message);
     }
 
     // 2. LOGICA RANDOM (Fallback se l'input è vuoto)
@@ -50,7 +73,23 @@ app.get('/pokebress', (req, res) => {
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
         const randomPokemon = pokebressData[randomKey];
         console.log(`Input vuoto || ID randomizzato: ${randomKey} -> ${randomPokemon}`);
-        return res.send(`oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`);
+        let message;
+        if (emoteData[randomKey]) { // controllo che per l'id selezionato esiste un'emote
+            const nomePkm = emoteData[randomKey].nome_pokemon;
+            const emotePkm = emoteData[randomKey].emote;
+            console.log(`Emote ${emotePkm} richiesta per pokemon ${nomePkm}`)
+            switch (randomKey){
+                case '549':
+                    message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${randomPokemon} ${emotePkm} ${emotePkm} Abbiamo la mascotte del canale!!`;
+                    break;
+                default:
+                    message = `oggi sei ${randomPokemon} ${emotePkm}, il pokemon n° ${randomKey}`
+                }
+            } 
+            else {
+                message = `oggi sei ${randomPokemon}, il pokemon n° ${randomKey}`
+        }
+        return res.send(message);
     } 
 
     // 3. LOGICA INPUT NON ANCORA DEFINITI -> tra maxId+1 e 1025
@@ -61,8 +100,8 @@ app.get('/pokebress', (req, res) => {
 
     // 4. LOGICA PER TRACCIARE PING NEI LOG -> il server si spegne se per 15 minuti rimane inattivo
     if (inputId === 'PING' && keys.length > 0) {
-        console.log(`Input "${inputId}" -> Fornire messaggio PONG per PING ricevuto`);
-        return res.send("PONG! Il server è online e risponde correttamente.");
+        console.log(`Input "${inputId}" -> Fornire messaggio ping avvenuto correttamente`);
+        return res.send(`PING al server avvenuto correttamente`);
     }
 
     // 5. VISUALIZZAZIONE ELENCO COMPLETO
@@ -84,4 +123,3 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
-
