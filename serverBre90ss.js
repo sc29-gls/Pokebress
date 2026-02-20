@@ -56,10 +56,11 @@ app.get('/pokebress', (req, res) => {
         const pokemonName = pokebressData[inputId];
         console.log(`ID richiesto: ${inputId} -> ${pokemonName}`);
         let message;
-        if (emoteData[inputId]) {
+        if (emoteData[inputId]) { // controllo che per l'id selezionato esiste un'emote
             const nomePkm = emoteData[inputId].nome_pokemon;
             const emotePkm = emoteData[inputId].emote;
-            console.log(`Emote ${emotePkm} richiesta per pokemon ${nomePkm}`)
+            const fontePkm = emoteData[inputId].fonte;
+            console.log(`-> Emote ${emotePkm} richiesta per pokemon ${nomePkm} || fonte = ${fontePkm}`)
             message = `il pokemon n° ${inputId} è ${emotePkm} ${pokemonName} ${emotePkm}`
         }
         else {
@@ -77,7 +78,8 @@ app.get('/pokebress', (req, res) => {
         if (emoteData[randomKey]) { // controllo che per l'id selezionato esiste un'emote
             const nomePkm = emoteData[randomKey].nome_pokemon;
             const emotePkm = emoteData[randomKey].emote;
-            console.log(`Emote ${emotePkm} richiesta per pokemon ${nomePkm}`)
+            const fontePkm = emoteData[randomKey].fonte;
+            console.log(`-> Emote ${emotePkm} richiesta per pokemon ${nomePkm} || fonte = ${fontePkm}`)
             switch (randomKey){
                 case '549':
                     message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${randomPokemon} ${emotePkm} ${emotePkm} Abbiamo la mascotte del canale!!`;
@@ -107,7 +109,7 @@ app.get('/pokebress', (req, res) => {
     // 5. VISUALIZZAZIONE ELENCO COMPLETO
     if (inputId === 'lista' && keys.length > 0) {
         console.log(`Input "${inputId}" -> Fornire link a pokebress.json`);
-        return res.send(`qui trovi il file contenente tutto l'elenco attuale -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json`)
+        return res.send(`qui trovi il file contenente tutto l'elenco attuale -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json || qui trovi il file contenente le emote usate -> https://github.com/sc29-gls/Pokebress/blob/main/emote.json`)
     }
 
     // 6. LOGICA INPUT ERRATO
