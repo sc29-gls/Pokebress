@@ -57,8 +57,8 @@ app.get('/pokebress', (req, res) => {
         console.log(`ID richiesto: ${inputId} -> ${pokemonName}`);
         let message;
         if (emoteData[inputId]) {
-            const nomePkm = emoteData[randomKey].nome_pokemon;
-            const emotePkm = emoteData[randomKey].emote;
+            const nomePkm = emoteData[inputId].nome_pokemon;
+            const emotePkm = emoteData[inputId].emote;
             console.log(`Emote ${emotePkm} richiesta per pokemon ${nomePkm}`)
             message = `il pokemon n° ${inputId} è ${emotePkm} ${pokemonName} ${emotePkm}`
         }
