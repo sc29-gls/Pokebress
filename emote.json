@@ -1,127 +1,71 @@
 {
-  "6": {
-    "nome_pokemon": "Charizard",
-    "emote": "PokCharizard",
-	"fonte": "Prime"
-  },
-  "9": {
-    "nome_pokemon": "Blastoise",
-    "emote": "PokBlastoise",
-	"fonte": "Prime"
-  },
-  "25": {
-    "nome_pokemon": "Pikachu",
-    "emote": "PokPikachu",
-	"fonte": "Prime"
-  },
-  "68": {
-    "nome_pokemon": "Machamp",
-    "emote": "PokMachamp",
-	"fonte": "Prime"
-  },
-  "94": {
-    "nome_pokemon": "Gengar",
-    "emote": "PokGengar",
-	"fonte": "Prime"
-  },
-  "150": {
-    "nome_pokemon": "Mewtwo",
-    "emote": "PokMewtwo",
-	"fonte": "Prime"
-  },
-  "196": {
-    "nome_pokemon": "Espeon",
-    "emote": "alepreSilvio",
-	"fonte": "Alepre98"
-  },
-  "205": {
-    "nome_pokemon": "Forretress",
-    "emote": "polyPigna",
-	"fonte": "Poly"
-  },
-  "212": {
-    "nome_pokemon": "Scizor",
-    "emote": "PokScizor",
-	"fonte": "Prime"
-  },
-  "245": {
-    "nome_pokemon": "Suicune",
-    "emote": "PokSuicune",
-	"fonte": "Prime"
-  },
-  "254": {
-    "nome_pokemon": "Sceptile",
-    "emote": "PokSceptile",
-	"fonte": "Prime"
-  },
-  "257": {
-    "nome_pokemon": "Blaziken",
-    "emote": "PokBlaziken",
-	"fonte": "Prime"
-  },
-  "282": {
-    "nome_pokemon": "Gardevoir",
-    "emote": "PokGardevoir",
-	"fonte": "Prime"
-  },
-  "395": {
-    "nome_pokemon": "Empoleon",
-    "emote": "PokEmpoleon",
-	"fonte": "Prime"
-  },
-    "400": {
-    "nome_pokemon": "Bibarell",
-    "emote": "thund3rCastoro",
-	"fonte": "DROODTHUND3R"
-  },
-  "445": {
-    "nome_pokemon": "Garchomp",
-    "emote": "PokGarchomp",
-	"fonte": "Prime"
-  },
-  "448": {
-    "nome_pokemon": "Lucario",
-    "emote": "PokLucario",
-	"fonte": "Prime"
-  },
-  "453": {
-    "nome_pokemon": "Croagunk",
-    "emote": "PokCroagunk",
-	"fonte": "Prime"
-  },
-  "461": {
-    "nome_pokemon": "Weavile",
-    "emote": "PokWeavile",
-	"fonte": "Prime"
-  },
-  "491": {
-    "nome_pokemon": "Darkrai",
-    "emote": "PokDarkrai",
-	"fonte": "Prime"
-  },
-  "549": {
-    "nome_pokemon": "Lilligant",
-    "emote": "bre90sLilliBre",
-	"fonte": "Bre90ss"
-  },
-  "609": {
-    "nome_pokemon": "Chandelure",
-    "emote": "PokChandelure",
-	"fonte": "Prime"
-  },
-  "654": {
-    "nome_pokemon": "Braixen",
-    "emote": "PokBraixen",
-	"fonte": "Prime"
-  },
-  "681": {
-    "nome_pokemon": "Aegislash",
-    "emote": "PokAegislash",
-	"fonte": "Prime"
-  },
-  "724": {
-    "nome_pokemon": "Decidueye",
-    "emote": "PokDecidueye",
-	"fonte": "Prime"
-  }
+  "6": { "nome_pokemon": "Charizard", "emote": "PokCharizard", "fonte": "Prime" },
+  "9": { "nome_pokemon": "Blastoise", "emote": "PokBlastoise", "fonte": "Prime" },
+  "23": { "nome_pokemon": "Ekans", "emote": "pkmnSmile", "fonte": "PKMNcast" },
+  "25": { "nome_pokemon": "Pikachu", "emote": "PokPikachu", "fonte": "Prime" },
+  "50": { "nome_pokemon": "Diglett", "emote": "pkmnWhistle", "fonte": "PKMNcast" },
+  "58": { "nome_pokemon": "Growlithe", "emote": "pkmnBork", "fonte": "PKMNcast" },
+  "68": { "nome_pokemon": "Machamp", "emote": "PokMachamp", "fonte": "Prime" },
+  "94": { "nome_pokemon": "Gengar", "emote": "PokGengar", "fonte": "Prime" },
+  "150": { "nome_pokemon": "Mewtwo", "emote": "PokMewtwo", "fonte": "Prime" },
+  "196": { "nome_pokemon": "Espeon", "emote": "alepreSilvio", "fonte": "Alepre98" },
+  "205": { "nome_pokemon": "Forretress", "emote": "polyPigna", "fonte": "Poly" },
+  "206": { "nome_pokemon": "Dunsparce", "emote": "pkmnDun1 pkmnDun2 pkmnDun3", "fonte": "PKMNcast" },
+  "212": { "nome_pokemon": "Scizor", "emote": "PokScizor", "fonte": "Prime" },
+  "225": { "nome_pokemon": "Delibird", "emote": "pkmnCelebrate", "fonte": "PKMNcast" },
+  "233": { "nome_pokemon": "Porygon 2", "emote": "pkmnComfy", "fonte": "PKMNcast" },
+  "241": { "nome_pokemon": "Miltank", "emote": "pkmnBless", "fonte": "PKMNcast" },
+  "245": { "nome_pokemon": "Suicune", "emote": "PokSuicune", "fonte": "Prime" },
+  "254": { "nome_pokemon": "Sceptile", "emote": "PokSceptile", "fonte": "Prime" },
+  "257": { "nome_pokemon": "Blaziken", "emote": "PokBlaziken", "fonte": "Prime" },
+  "263": { "nome_pokemon": "Ziggzagoon", "emote": "pkmnPedro", "fonte": "PKMNcast" },
+  "282": { "nome_pokemon": "Gardevoir", "emote": "PokGardevoir", "fonte": "Prime" },
+  "300": { "nome_pokemon": "Skitty", "emote": "pkmnLurk", "fonte": "PKMNcast" },
+  "327": { "nome_pokemon": "Spinda", "emote": "pkmnWave", "fonte": "PKMNcast" },
+  "363": { "nome_pokemon": "Spheal", "emote": "pkmnNom", "fonte": "PKMNcast" },
+  "395": { "nome_pokemon": "Empoleon", "emote": "PokEmpoleon", "fonte": "Prime" },
+  "400": { "nome_pokemon": "Bibarell", "emote": "thund3rCastoro", "fonte": "DROODTHUND3R" },
+  "403": { "nome_pokemon": "Shinx", "emote": "pkmnConfusion", "fonte": "PKMNcast" },
+  "423": { "nome_pokemon": "Gastrodon", "emote": "pkmnShiny", "fonte": "PKMNcast" },
+  "430": { "nome_pokemon": "Honchkrow", "emote": "pkmn7", "fonte": "PKMNcast" },
+  "438": { "nome_pokemon": "Bonsly", "emote": "pkmnBaby", "fonte": "PKMNcast" },
+  "443": { "nome_pokemon": "Gible", "emote": "pkmnNO", "fonte": "PKMNcast" },
+  "445": { "nome_pokemon": "Garchomp", "emote": "PokGarchomp", "fonte": "Prime" },
+  "448": { "nome_pokemon": "Lucario", "emote": "PokLucario", "fonte": "Prime" },
+  "453": { "nome_pokemon": "Croagunk", "emote": "PokCroagunk", "fonte": "Prime" },
+  "461": { "nome_pokemon": "Weavile", "emote": "PokWeavile", "fonte": "Prime" },
+  "491": { "nome_pokemon": "Darkrai", "emote": "PokDarkrai", "fonte": "Prime" },
+  "509": { "nome_pokemon": "Purrloin", "emote": "pkmnBonk", "fonte": "PKMNcast" },
+  "519": { "nome_pokemon": "Pidove", "emote": "pkmnBlink", "fonte": "PKMNcast" },
+  "541": { "nome_pokemon": "Swadloon", "emote": "pkmnNod", "fonte": "PKMNcast" },
+  "549": { "nome_pokemon": "Lilligant", "emote": "bre90sLilliBre", "fonte": "Bre90ss" },
+  "568": { "nome_pokemon": "Trubbish", "emote": "pkmnEyes", "fonte": "PKMNcast" },
+  "580": { "nome_pokemon": "Ducklett", "emote": "pkmnPog", "fonte": "PKMNcast" },
+  "606": { "nome_pokemon": "Beheeyem", "emote": "pkmnLurk", "fonte": "PKMNcast" },
+  "609": { "nome_pokemon": "Chandelure", "emote": "PokChandelure", "fonte": "Prime" },
+  "654": { "nome_pokemon": "Braixen", "emote": "PokBraixen", "fonte": "Prime" },
+  "674": { "nome_pokemon": "Pancham", "emote": "pkmnHug", "fonte": "PKMNcast" },
+  "677": { "nome_pokemon": "Espurr", "emote": "pkmnCult", "fonte": "PKMNcast" },
+  "681": { "nome_pokemon": "Aegislash", "emote": "PokAegislash", "fonte": "Prime" },
+  "702": { "nome_pokemon": "Dedenne", "emote": "pkmnSip", "fonte": "PKMNcast" },
+  "724": { "nome_pokemon": "Decidueye", "emote": "PokDecidueye", "fonte": "Prime" },
+  "725": { "nome_pokemon": "Litten", "emote": "pkmnBongo", "fonte": "PKMNcast" },
+  "728": { "nome_pokemon": "Popplio", "emote": "pkmnLUL", "fonte": "PKMNcast" },
+  "737": { "nome_pokemon": "Charjabug", "emote": "pkmnZoom", "fonte": "PKMNcast" },
+  "769": { "nome_pokemon": "Sandigast", "emote": "pkmnFine", "fonte": "PKMNcast" },
+  "786": { "nome_pokemon": "Tapu Lele", "emote": "pkmnIQ", "fonte": "PKMNcast" },
+  "808": { "nome_pokemon": "Meltan", "emote": "pkmnGift", "fonte": "PKMNcast" },
+  "813": { "nome_pokemon": "Scorbunny", "emote": "pkmnAww", "fonte": "PKMNcast" },
+  "816": { "nome_pokemon": "Sobble", "emote": "pkmnLost", "fonte": "PKMNcast" },
+  "819": { "nome_pokemon": "Skwovet", "emote": "pkmnNLT", "fonte": "PKMNcast" },
+  "845": { "nome_pokemon": "Cramorant", "emote": "pkmnRant", "fonte": "PKMNcast" },
+  "875": { "nome_pokemon": "Eiscue", "emote": "pkmnExcuse", "fonte": "PKMNcast" },
+  "876": { "nome_pokemon": "Indeedee", "emote": "pkmnLurk", "fonte": "PKMNcast" },
+  "877": { "nome_pokemon": "Morpeko", "emote": "pkmnPout", "fonte": "PKMNcast" },
+  "891": { "nome_pokemon": "Kubfu", "emote": "pkmnH", "fonte": "PKMNcast" },
+  "906": { "nome_pokemon": "Spigatito", "emote": "pkmnLurk", "fonte": "PKMNcast" },
+  "909": { "nome_pokemon": "Fuecoco", "emote": "pkmnPet", "fonte": "PKMNcast" },
+  "913": { "nome_pokemon": "Quaxly", "emote": "pkmnSquish", "fonte": "PKMNcast" },
+  "923": { "nome_pokemon": "Pawmot", "emote": "pkmnParty", "fonte": "PKMNcast" },
+  "978": { "nome_pokemon": "Tatsugiri", "emote": "pkmnRave", "fonte": "PKMNcast" }
 }
