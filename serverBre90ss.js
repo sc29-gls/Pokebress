@@ -24,7 +24,7 @@ const fileContent = fs.readFileSync('pokebress.json', 'utf8');
         maxId = Math.max(...keys);
         minId = Math.min(...keys);
     }
-    console.log("pokebress.json caricato correttamente.")
+    console.log("✅ pokebress.json caricato correttamente.")
 } catch (err) {
     console.error("Errore lettura JSON pokebress.json:", err);
 }
@@ -126,4 +126,5 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
 
