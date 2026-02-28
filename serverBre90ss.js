@@ -59,7 +59,7 @@ app.get('/pokebress', (req, res) => {
 
     // --- FUNZIONE DI SUPPORTO PER TRASFORMARE TIPI IN EMOJI ---
     const getEmojiTipi = (tipiArray) => {
-        return tipiArray.map(tipo => emoteTipi[tipo] || tipo).join(' ');
+        return tipiArray.map(tipo => emoteTipi[tipo] || tipo).join('');
     };
 
     // 1. LOGICA DI RICERCA (ID specifico)
@@ -131,3 +131,4 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
