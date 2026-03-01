@@ -22,7 +22,7 @@ try {
         maxId = Math.max(...keys);
         minId = Math.min(...keys);
     }
-    console.log("✅ pokebress.json caricato correttamente.")
+    console.log("✅ pokebress.json caricato correttamente")
 } catch (err) {
     console.error("❌ Errore lettura JSON pokebress.json:", err);
 }
@@ -30,7 +30,7 @@ try {
 // carica json contenente lista emotes pokemon
 try {
     emotePokemon = require('./emotes.pokemon.json');
-    console.log("✅ emotes.pokemon.json caricato correttamente.");
+    console.log("✅ emotes.pokemon.json caricato correttamente");
 } catch (err) {
     console.error("⚠️ AVVISO: Errore nel caricamento di emotes.pokemon.json.");
     emotePokemon = {};
@@ -39,7 +39,7 @@ try {
 // carica json contenente lista emotes tipi
 try {
     emoteTipi = require('./emotes.tipi.json');
-    console.log("✅ emotes.tipi.json caricato correttamente.");
+    console.log("✅ emotes.tipi.json caricato correttamente");
 } catch (err) {
     console.error("⚠️ AVVISO: Errore nel caricamento di emotes.tipi.json.");
     emoteTipi = {};
@@ -72,6 +72,7 @@ app.get('/pokebress', (req, res) => {
         
         if (emotePokemon[inputId]) {
             const emotePkm = emotePokemon[inputId].emote;
+            console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[inputId].nome_pokemon} || fonte = ${emotePokemon[inputId].fonte}`)
             // Formattazione richiesta: n° ID è emojiTipi Nome Emote
             message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome} ${emotePkm} (gen. ${pokemon.gen})`;
         } else {
@@ -86,12 +87,12 @@ app.get('/pokebress', (req, res) => {
         const pokemon = pokebressData[randomKey];
         const emojiTipi = getEmojiTipi(pokemon.tipi);
 
-        
         console.log(`Input vuoto || ID randomizzato: ${randomKey} -> ${pokemon.nome}`);
         let message;
 
         if (emotePokemon[randomKey]) {
             const emotePkm = emotePokemon[randomKey].emote;
+                        console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[inputId].nome_pokemon} || fonte = ${emotePokemon[inputId].fonte}`)
             switch (randomKey) {
                 case '549':
                     message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome} ${emotePkm} ${emotePkm} Abbiamo la mascotte del canale!!`;
@@ -107,21 +108,25 @@ app.get('/pokebress', (req, res) => {
 
     // 3. LOGICA INPUT NON ANCORA DEFINITI
     if (inputId >= maxId + 1 && inputId <= ultimo_pokemon && keys.length > 0) {
+        console.log(`Input non ancora presente "${inputId}" -> Fornire limiti operativi`)
         return res.send(`ad oggi puoi consultare il pokebress tra ${minId} e ${maxId} (@tha_acsam sta lavorando all'elenco completo...)`);
     }
 
     // 4. LOGICA PING
     if (inputId === 'PING' && keys.length > 0) {
+        console.log(`Input "PING" -> Fornire messaggio per PING avvenuto correttamente`)
         return res.send(`PING al server avvenuto correttamente`);
     }
 
     // 5. VISUALIZZAZIONE ELENCO COMPLETO
     if (inputId === 'lista' && keys.length > 0) {
-        return res.send(`qui trovi il file contenente tutto l'elenco attuale -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json || qui trovi il file contenente le emote usate -> https://github.com/sc29-gls/Pokebress/blob/main/emotes.pokemon.json`);
+        console.log(`Input "LISTA" -> Fornire link alla repository`)
+        return res.send(`file contenente il pokebress -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json || file contenente le emote usate per i pokemon -> https://github.com/sc29-gls/Pokebress/blob/main/emotes.pokemon.json`);
     }
 
     // 6. LOGICA INPUT ERRATO
     if (keys.length > 0) {
+        console.log(`Input non valido "${inputId}" -> Fornire istruzioni comando`)
         return res.send(`il comando funziona nei seguenti casi: 🟢1. "${comando_twitch}" -> che pokebress sei 🟢2. "${comando_twitch} ###" -> nome pokebress con id ### (valido ad oggi per id tra ${minId} e ${maxId}) 🟢3. "${comando_twitch} lista" -> file contenente tutto l'elenco`);
     } else {
         return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
