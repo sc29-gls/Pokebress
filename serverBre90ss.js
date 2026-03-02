@@ -98,7 +98,7 @@ app.get('/pokebress', (req, res) => {
                     message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome} ${emotePkm} ${emotePkm} Abbiamo la mascotte del canale!!`;
                     break;
                 default:
-                    message = `oggi sei ${emojiTipi} ${pokemon.nome} ${emotePkm}, il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
+                    message = `oggi sei ${emojiTipi} ${pokemon.nome} ${emotePkm} , il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
             }
         } else {
             message = `oggi sei ${emojiTipi} ${pokemon.nome}, il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
@@ -136,5 +136,6 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
 
 
