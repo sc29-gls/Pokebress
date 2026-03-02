@@ -92,7 +92,7 @@ app.get('/pokebress', (req, res) => {
 
         if (emotePokemon[randomKey]) {
             const emotePkm = emotePokemon[randomKey].emote;
-                        console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[inputId].nome_pokemon} || fonte = ${emotePokemon[inputId].fonte}`)
+            console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[randomKey].nome_pokemon} || fonte = ${emotePokemon[randomKey].fonte}`)
             switch (randomKey) {
                 case '549':
                     message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome} ${emotePkm} ${emotePkm} Abbiamo la mascotte del canale!!`;
@@ -136,4 +136,5 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
+
 
