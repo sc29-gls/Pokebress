@@ -87,6 +87,13 @@ app.get('/pokebress', (req, res) => {
         const pokemon = pokebressData[randomKey];
         const emojiTipi = getEmojiTipi(pokemon.tipi);
 
+        let shiny_string = ''
+        const isShiny = Math.random() < 0.1; // shiny rate
+        console.log(`${isShiny}`)
+        if (isShiny) {
+            shiny_string = ' shiny ✨'
+        }
+
         console.log(`Input vuoto || ID randomizzato: ${randomKey} -> ${pokemon.nome}`);
         let message;
 
@@ -98,10 +105,10 @@ app.get('/pokebress', (req, res) => {
                     message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome} ${emotePkm} ${emotePkm} Abbiamo la mascotte del canale!!`;
                     break;
                 default:
-                    message = `oggi sei ${emojiTipi} ${pokemon.nome} ${emotePkm} , il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
+                    message = `oggi sei ${emojiTipi} ${pokemon.nome}${shiny_string} ${emotePkm} , il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
             }
         } else {
-            message = `oggi sei ${emojiTipi} ${pokemon.nome}, il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
+            message = `oggi sei ${emojiTipi} ${pokemon.nome}${shiny_string}, il pokemon n° ${randomKey} (gen. ${pokemon.gen})`;
         }
         return res.send(message);
     }
@@ -136,6 +143,3 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
-
-
-
