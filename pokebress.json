@@ -208,7 +208,7 @@
     "206": {"nome": "Dunspabre", "tipi": ["Normale"], "gen": "2"},
     "207": {"nome": "Gligbre", "tipi": ["Terra", "Volante"], "gen": "2"},
     "208": {"nome": "Breelix", "tipi": ["Acciaio", "Terra"], "gen": "2"},
-    "209": {"nome": "Sunbbrell", "tipi": ["Folletto"], "gen": "2"},
+    "209": {"nome": "Snubbrell", "tipi": ["Folletto"], "gen": "2"},
     "210": {"nome": "Granbrell", "tipi": ["Folletto"], "gen": "2"},
     "211": {"nome": "Qwilbresh", "tipi": ["Acqua", "Veleno"], "gen": "2"},
     "212": {"nome": "Breizor", "tipi": ["Coleottero", "Acciaio"], "gen": "2"},
@@ -1026,4 +1026,5 @@
     "1024": {"nome": "Brerapagos", "tipi": ["Normale"], "gen": "9"},
     "1025": {"nome": "Brecharunt", "tipi": ["Veleno", "Spettro"], "gen": "9"}
 }
+
 
