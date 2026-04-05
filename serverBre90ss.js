@@ -95,7 +95,14 @@ app.get('/pokebress', (req, res) => {
         }
 
         console.log(`Input vuoto || ID randomizzato: ${randomKey} -> ${pokemon.nome}`);
-        let message;
+        let message;    
+        
+        let shiny_string = ''
+        const isShiny = Math.random() < 0.1; // shiny rate
+        console.log(`-> isShiny = ${isShiny}`)
+        if (isShiny) {
+            shiny_string = ' ✨ shiny ✨'
+        }
 
         if (emotePokemon[randomKey]) {
             const emotePkm = emotePokemon[randomKey].emote;
