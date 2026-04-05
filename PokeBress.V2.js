@@ -134,7 +134,7 @@ app.get('/pokebress', (req, res) => {
     // 5. VISUALIZZAZIONE SCRIPT
     if (inputId === 'codice' && pokebressData.length > 0) {
         console.log(`Input "LISTA" -> Fornire link alla repository`)
-        return res.send(`La repository è su github -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json`);
+        return res.send(`La repository è su github -> https://github.com/sc29-gls/Pokebress/blob/main`);
     }
 
     // 6. LOGICA INPUT ERRATO
