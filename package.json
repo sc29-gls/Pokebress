@@ -2,9 +2,9 @@
   "name": "bre90ss",
   "version": "1.0.0",
   "description": "Server Pokédex per Render",
-  "main": "serverBre90ss.js",
+  "main": "PokeBress.V2.js",
   "scripts": {
-    "start": "node serverBre90ss.js",
+    "start": "node PokeBress.V2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +12,15 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2"
-  }
+    "cors": "^2.8.6",
+    "express": "^4.22.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc29-gls/Pokebress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sc29-gls/Pokebress/issues"
+  },
+  "homepage": "https://github.com/sc29-gls/Pokebress#readme"
 }

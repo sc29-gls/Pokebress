@@ -88,21 +88,14 @@ app.get('/pokebress', (req, res) => {
         const emojiTipi = getEmojiTipi(pokemon.tipi);
 
         let shiny_string = ''
-        const isShiny = Math.random() < 0.5; // shiny rate
+        const isShiny = Math.random() < 0.1; // shiny rate
         console.log(`${isShiny}`)
         if (isShiny) {
             shiny_string = ' shiny ✨'
         }
 
         console.log(`Input vuoto || ID randomizzato: ${randomKey} -> ${pokemon.nome}`);
-        let message;    
-        
-        let shiny_string = ''
-        const isShiny = Math.random() < 0.1; // shiny rate
-        console.log(`-> isShiny = ${isShiny}`)
-        if (isShiny) {
-            shiny_string = ' ✨ shiny ✨'
-        }
+        let message;
 
         if (emotePokemon[randomKey]) {
             const emotePkm = emotePokemon[randomKey].emote;
@@ -150,4 +143,3 @@ app.get('/pokebress', (req, res) => {
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server in ascolto sulla porta ${port}`);
 });
-

@@ -8,7 +8,7 @@ per lanciare in locale
 da terminale scrivere:
 1) npm init -y
 2) npm install express cors
-3) node serverBre90ss.js
+3) node PokeBress.V2.js
 ------------------------
 da browser scrivere
 1) http://localhost:3000/pokebress?id=!pokebress%2025

@@ -1,0 +1,151 @@
+const express = require('express');
+const fs = require('fs');
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Caricamento database Pokémon
+let pokebressData = []; 
+let emotePokemon = {};
+let emoteTipi = {};
+let maxId = 0;
+let minId = 0;
+let ultimo_pokemon = 1025;
+
+// Carica json contenente lista pokebress (Array)
+try {
+    const fileContent = fs.readFileSync('pokebress.V2.json', 'utf8');
+    pokebressData = JSON.parse(fileContent);
+    
+    // Estraiamo gli id_univoco per calcolare min e max
+    const ids = pokebressData.map(p => Number(p.id_pokedex_nazionale));
+
+    if (ids.length > 0) {
+        maxId = Math.max(...ids);
+        minId = Math.min(...ids);
+    }
+    console.log("✅ pokebress.V2.json caricato correttamente");
+} catch (err) {
+    console.error("❌ Errore lettura JSON pokebress.V2.json:", err);
+}
+
+// Carica emotes 
+try {
+    emotePokemon = require('./emotes.pokemon.json');
+    console.log("✅ emotes.pokemon.json caricato correttamente");
+} catch (err) {
+    console.error("⚠️ AVVISO: Errore nel caricamento di emotes.pokemon.json.");
+    emotePokemon = {};
+}
+
+// carica json contenente lista emotes tipi
+try {
+    emoteTipi = require('./emotes.tipi.json');
+    console.log("✅ emotes.tipi.json caricato correttamente");
+} catch (err) {
+    console.error("⚠️ AVVISO: Errore nel caricamento di emotes.tipi.json.");
+    emoteTipi = {};
+}
+
+app.get('/pokebress', (req, res) => {
+    let inputId = req.query.id || "";
+    let comando_twitch = '';
+    const match = inputId.match(/^(!\w+)\s*/);
+
+    if (match) {
+        comando_twitch = match[1];
+        inputId = inputId.replace(match[0], '').trim();
+    }
+
+    // --- FUNZIONE DI SUPPORTO PER TRASFORMARE TIPI IN EMOJI ---
+    const getEmojiTipi = (tipiArray) => {
+        if (!Array.isArray(tipiArray)) return "";
+        return tipiArray.map(tipo => emoteTipi[tipo] || tipo).join('');
+    };
+
+    // 1. LOGICA DI RICERCA (ID specifico)
+    // Cerchiamo l'oggetto nell'array che ha id_univoco uguale a inputId
+    const pokemonTrovato = pokebressData.find(p => String(p.id_univoco) === String(inputId));
+
+    if (inputId && pokemonTrovato) {
+        // Applichiamo il limite maxId richiesto
+        if (Number(inputId) <= maxId && Number(inputId) >= minId) { 
+            const pokemon = pokemonTrovato;
+            const emojiTipi = getEmojiTipi(pokemon.tipi);
+            
+            console.log(`ID univoco richiesto: ${inputId} -> id regionale: ${pokemon.id_pokedex_nazionale} -> ${pokemon.nome}`);
+            let message;
+            
+            if (emotePokemon[inputId]) {
+                const emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
+                console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
+                // Formattazione richiesta: n° ID è emojiTipi Nome Emote
+                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome} ${emotePkm}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+            } else {
+                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+            }
+            return res.send(message);
+        }
+    }
+
+    // 2. LOGICA RANDOM
+    if (inputId === "" && pokebressData.length > 0) {
+        const randomIndex = Math.floor(Math.random() * pokebressData.length);
+        const pokemon = pokebressData[randomIndex];
+        const randomId = pokemon.id_univoco;
+        const emojiTipi = getEmojiTipi(pokemon.tipi);
+
+        let shiny_string = '';
+        const isShiny = Math.random() < 0.1; 
+        console.log(`${isShiny}`);
+        if (isShiny) {
+            shiny_string = ' shiny ✨';
+        }
+
+        console.log(`Input vuoto || ID randomizzato: ${randomId} -> id regionale: ${pokemon.id_pokedex_nazionale} -> ${pokemon.nome}`);
+        let message;
+
+        if (emotePokemon[randomId]) {
+            const emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
+            console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
+            
+            if (String(pokemon.id_univoco) === '549') { 
+                message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome} ${emojiTipi} della regione di ${pokemon.regione} ${emotePkm} ${emotePkm} @bre90ss non snitchare e dagli il 💎 VIP 💎`;
+            } else {
+                message = `oggi sei ${emojiTipi} ${pokemon.nome}${shiny_string} ${emotePkm} , il pokemon n° ${pokemon.id_pokedex_nazionale} originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+            }
+        } else {
+            message = `oggi sei ${emojiTipi} ${pokemon.nome}${shiny_string}, il pokemon n° ${pokemon.id_pokedex_nazionale} originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+        }
+        return res.send(message);
+    }
+
+    // 3. LOGICA INPUT NON ANCORA DEFINITI
+    if (Number(inputId) >= maxId + 1 && Number(inputId) <= ultimo_pokemon && pokebressData.length > 0) {
+        console.log(`Input non ancora presente "${inputId}" -> Fornire limiti operativi`)
+        return res.send(`ad oggi puoi consultare il pokebress tra ${minId} e ${maxId} (@tha_acsam sta lavorando all'elenco completo...)`);
+    }
+
+    // 4. LOGICA PING
+    if (inputId === 'PING' && pokebressData.length > 0) {
+        console.log(`Input "PING" -> Fornire messaggio per PING avvenuto correttamente`)
+        return res.send(`PING al server avvenuto correttamente`);
+    }
+
+    // 5. VISUALIZZAZIONE SCRIPT
+    if (inputId === 'codice' && pokebressData.length > 0) {
+        console.log(`Input "LISTA" -> Fornire link alla repository`)
+        return res.send(`La repository è su github -> https://github.com/sc29-gls/Pokebress/blob/main/pokebress.json`);
+    }
+
+    // 6. LOGICA INPUT ERRATO
+    if (pokebressData.length > 0) {
+        console.log(`Input non valido "${inputId}" -> Fornire istruzioni comando`)
+        return res.send(`il comando funziona nei seguenti casi: 🟢1. "${comando_twitch}" -> che pokebress sei 🟢2. "${comando_twitch} ###" -> nome pokebress con id ### (id tra ${minId} e ${maxId}) 🟢3. "${comando_twitch} codice" -> link alla repository completa`);
+    } else {
+        return res.status(500).send("Errore: Database Pokémon non caricato correttamente.");
+    }
+});
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server in ascolto sulla porta ${port}`);
+});
