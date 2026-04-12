@@ -46,6 +46,7 @@ try {
     emoteTipi = {};
 }
 
+
 app.get('/pokebress', (req, res) => {
     let inputId = req.query.id || "";
     let comando_twitch = '';
@@ -72,16 +73,16 @@ app.get('/pokebress', (req, res) => {
             const pokemon = pokemonTrovato;
             const emojiTipi = getEmojiTipi(pokemon.tipi);
             
-            console.log(`ID univoco richiesto: ${inputId} -> id regionale: ${pokemon.id_pokedex_nazionale} -> ${pokemon.nome}`);
+            console.log(`ID univoco richiesto: ${inputId} -> id regionale: ${pokemon.id_pokedex_nazionale} -> ${pokemon.nome_storpiato}`);
             let message;
             
             if (emotePokemon[inputId]) {
                 const emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
                 console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
                 // Formattazione richiesta: n° ID è emojiTipi Nome Emote
-                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome} ${emotePkm}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome_storpiato} ${emotePkm}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
             } else {
-                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome_storpiato}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
             }
             return res.send(message);
         }
@@ -101,7 +102,19 @@ app.get('/pokebress', (req, res) => {
             shiny_string = ' shiny ✨';
         }
 
-        console.log(`Input vuoto || ID randomizzato: ${randomId} -> id regionale: ${pokemon.id_pokedex_nazionale} -> ${pokemon.nome}`);
+        let forma_string = '';
+        switch (true) {
+//            case pokemon.forma.startsWith("Forma"):
+//                forma_string = ` - ${pokemon.forma}`;
+//                break;
+            case pokemon.forma.length > 0: 
+                forma_string = ` ${pokemon.forma}`;
+                break;
+            default:
+                forma_string = '';
+        }
+
+        console.log(`Input vuoto || ID randomizzato: ${randomId} -> id regionale: ${pokemon.id_pokedex_nazionale} -> ${pokemon.nome_storpiato} ${pokemon.forma}`);
         let message;
 
         if (emotePokemon[randomId]) {
@@ -109,12 +122,12 @@ app.get('/pokebress', (req, res) => {
             console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
             
             if (String(pokemon.id_univoco) === '549') { 
-                message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome} ${emojiTipi} della regione di ${pokemon.regione} ${emotePkm} ${emotePkm} @bre90ss non snitchare e dagli il 💎 VIP 💎`;
+                message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome_storpiato}${forma_string} ${emojiTipi} della regione di ${pokemon.regione} ${emotePkm} ${emotePkm} @bre90ss non snitchare e dagli il 💎 VIP 💎`;
             } else {
-                message = `oggi sei ${emojiTipi} ${pokemon.nome}${shiny_string} ${emotePkm} , il pokemon n° ${pokemon.id_pokedex_nazionale} originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+                message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${forma_string}${shiny_string} ${emotePkm} , il pokemon n° ${pokemon.id_pokedex_nazionale} (gen. ${pokemon.generazione})`;
             }
         } else {
-            message = `oggi sei ${emojiTipi} ${pokemon.nome}${shiny_string}, il pokemon n° ${pokemon.id_pokedex_nazionale} originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+            message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${forma_string}${shiny_string}, il pokemon n° ${pokemon.id_pokedex_nazionale} (gen. ${pokemon.generazione})`;
         }
         return res.send(message);
     }

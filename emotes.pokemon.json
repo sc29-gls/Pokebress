@@ -1,4 +1,5 @@
 {
+  "0": { "nome_pokemon": "MissingNo", "emote": "⟝༼ ◕ ̯ ◕ ༽⟞", "fonte": "Caratteri Tastiera" },
   "6": { "nome_pokemon": "Charizard", "emote": "PokCharizard", "fonte": "Prime" },
   "9": { "nome_pokemon": "Blastoise", "emote": "PokBlastoise", "fonte": "Prime" },
   "25": { "nome_pokemon": "Pikachu", "emote": "PokPikachu", "fonte": "Prime" },
