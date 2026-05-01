@@ -3,9 +3,6 @@ const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 3000;
 
-//////////////////////////////////////////////////////////////////////////////////////
-// CARICAMENTO DATI 
-//////////////////////////////////////////////////////////////////////////////////////
 // Caricamento database Pokémon
 let pokebressData = []; 
 let emotePokemon = {};
@@ -16,7 +13,7 @@ let ultimo_pokemon = 1025;
 
 // Carica json contenente lista pokebress (Array)
 try {
-    const fileContent = fs.readFileSync('pokebress.V2.json', 'utf8');
+    const fileContent = fs.readFileSync('pokebress.V2_tmp.json', 'utf8');
     pokebressData = JSON.parse(fileContent);
     
     // Estraiamo gli id_univoco per calcolare min e max
@@ -33,7 +30,7 @@ try {
 
 // Carica emotes 
 try {
-    emotePokemon = require('./emotes.pokemon.json');
+    emotePokemon = require('../emotes.pokemon.json');
     console.log("✅ emotes.pokemon.json caricato correttamente");
 } catch (err) {
     console.error("⚠️ AVVISO: Errore nel caricamento di emotes.pokemon.json.");
@@ -42,45 +39,13 @@ try {
 
 // carica json contenente lista emotes tipi
 try {
-    emoteTipi = require('./emotes.tipi.json');
+    emoteTipi = require('../emotes.tipi.json');
     console.log("✅ emotes.tipi.json caricato correttamente");
 } catch (err) {
     console.error("⚠️ AVVISO: Errore nel caricamento di emotes.tipi.json.");
     emoteTipi = {};
 }
 
-// carica il file che traccia quante volte sono spawnati i pokemon dalla logica 2
-const STATS_FILE = 'statistiche_random_pick.json';
-let statsData = {};
-try {
-    if (fs.existsSync(STATS_FILE)) {
-        statsData = JSON.parse(fs.readFileSync(STATS_FILE, 'utf8'));
-        console.log("✅ statistiche_random_pick.json caricato correttamente.");
-    }
-} catch (err) {
-    console.error("⚠️ AVVISO: errore caricamento statistiche_random_pick.json:", err);
-}
-
-// funzione per tracciare quante volte è spawnato un pokemon
-const incrementaContatore = (id) => {
-    // Se l'ID non esiste ancora nel JSON delle statistiche, lo inizializziamo a 0
-    if (!statsData[id]) {
-        statsData[id] = 0;
-    }
-    
-    // Incrementiamo
-    statsData[id]++;
-
-    // Salviamo il file aggiornato
-    fs.writeFile(STATS_FILE, JSON.stringify(statsData, null, 2), (err) => {
-        if (err) console.error("❌ Errore salvataggio statistiche:", err);
-    });
-};
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-// CORPO DEL CODICE
-//////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/pokebress', (req, res) => {
     let inputId = req.query.id || "";
@@ -128,12 +93,11 @@ app.get('/pokebress', (req, res) => {
         const randomIndex = Math.floor(Math.random() * pokebressData.length);
         const pokemon = pokebressData[randomIndex];
         const randomId = pokemon.id_univoco;
-        incrementaContatore(randomId);
         const emojiTipi = getEmojiTipi(pokemon.tipi);
 
         let shiny_string = '';
         const isShiny = Math.random() < 0.1; 
-        console.log(`Flag isShiny = ${isShiny}`);
+        console.log(`${isShiny}`);
         if (isShiny) {
             shiny_string = ' shiny ✨';
         }
@@ -192,36 +156,11 @@ app.get('/pokebress', (req, res) => {
 
     // 5. VISUALIZZAZIONE SCRIPT
     if (inputId === 'codice' && pokebressData.length > 0) {
-        console.log(`Input "codice" -> Fornire link alla repository`)
+        console.log(`Input "LISTA" -> Fornire link alla repository`)
         return res.send(`La repository è su github -> https://github.com/sc29-gls/Pokebress/blob/main`);
     }
 
-    // 6. VISUALIZZAZIONE TOP 3 ESTRATTI
-    if (inputId === 'stats' && pokebressData.length > 0) {
-        console.log(`Input "stats" -> Fornire TOP 3 pokemon estratti`)
-        const getTop3 = () => {
-            const topArray = Object.entries(statsData)
-                .map(([id, count]) => ({ id: Number(id), count }))
-                .sort((a, b) => b.count - a.count)
-                .slice(0, 3);
-
-            return topArray.map((item, index) => {
-                const pkmInfo = pokebressData.find(p => p.id_univoco === item.id);
-                const nome = pkmInfo ? pkmInfo.nome_storpiato : "Sconosciuto";
-                const regione = pkmInfo ? pkmInfo.regione : "";
-                const forma = pkmInfo ? pkmInfo.forma : "";
-                const emojiTipi = getEmojiTipi(pkmInfo.tipi);
-                const medaglie = ["🥇", "🥈", "🥉"];
-                const medaglia = medaglie[index];
-                
-                return `${medaglia}: ${emojiTipi} ${nome} ${forma} (${regione}) - spawnato ${item.count} volte`;
-            }).join(' | ');
-        };
-        const messaggioTop3 = getTop3();
-        return res.send(`🏆 TOP 3 BressMon spawnati -> ${messaggioTop3}`);
-    }
-
-    // 7. LOGICA INPUT ERRATO
+    // 6. LOGICA INPUT ERRATO
     if (pokebressData.length > 0) {
         console.log(`Input non valido "${inputId}" -> Fornire istruzioni comando`)
         return res.send(`il comando funziona nei seguenti casi: 🟢1. "${comando_twitch}" -> che pokebress sei 🟢2. "${comando_twitch} ###" -> nome pokebress con id ### (id tra ${minId} e ${maxId}) 🟢3. "${comando_twitch} codice" -> link alla repository completa`);

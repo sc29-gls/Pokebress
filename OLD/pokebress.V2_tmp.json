@@ -1,0 +1,326 @@
+[
+  {
+    "id_univoco": 0,
+    "id_pokedex_nazionale": 0,
+    "nome_originale": "MissingNo",
+    "nome_storpiato": "BressingNo",
+    "forma": "",
+    "tipi": [
+      "Uccello",
+      "Normale"
+    ],
+    "generazione": 1,
+    "regione": "Kanto",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 6,
+    "id_pokedex_nazionale": 6,
+    "nome_originale": "Charizard",
+    "nome_storpiato": "Brerizard",
+    "forma": "",
+    "tipi": [
+      "Fuoco",
+      "Volante"
+    ],
+    "generazione": 1,
+    "regione": "Kanto",
+    "mega": "Si",
+    "gigamax": "Si",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 19,
+    "id_pokedex_nazionale": 19,
+    "nome_originale": "Rattata",
+    "nome_storpiato": "Brettata",
+    "forma": "",
+    "tipi": [
+      "Normale"
+    ],
+    "generazione": 1,
+    "regione": "Kanto",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 128,
+    "id_pokedex_nazionale": 128,
+    "nome_originale": "Tauros",
+    "nome_storpiato": "Taubres",
+    "forma": "",
+    "tipi": [
+      "Normale"
+    ],
+    "generazione": 1,
+    "regione": "Kanto",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 351,
+    "id_pokedex_nazionale": 351,
+    "nome_originale": "Castform",
+    "nome_storpiato": "Castfobre",
+    "forma": "",
+    "tipi": [
+      "Normale"
+    ],
+    "generazione": 3,
+    "regione": "Hoenn",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": "Si"
+  },
+  {
+    "id_univoco": 386,
+    "id_pokedex_nazionale": 386,
+    "nome_originale": "Deoxys",
+    "nome_storpiato": "Breoxys",
+    "forma": "",
+    "tipi": [
+      "Psico"
+    ],
+    "generazione": 3,
+    "regione": "Hoenn",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": "Si"
+  },
+  {
+    "id_univoco": 549,
+    "id_pokedex_nazionale": 549,
+    "nome_originale": "Lilligant",
+    "nome_storpiato": "Brelligant",
+    "forma": "",
+    "tipi": [
+      "Erba"
+    ],
+    "generazione": 5,
+    "regione": "Unima",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 550,
+    "id_pokedex_nazionale": 550,
+    "nome_originale": "Basculin",
+    "nome_storpiato": "Bresculin",
+    "forma": "Forma Linearossa",
+    "tipi": [
+      "Acqua"
+    ],
+    "generazione": 5,
+    "regione": "Unima",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": "Si"
+  },
+  {
+    "id_univoco": 555,
+    "id_pokedex_nazionale": 555,
+    "nome_originale": "Darmanitan",
+    "nome_storpiato": "Brermanitan",
+    "forma": "",
+    "tipi": [
+      "Fuoco"
+    ],
+    "generazione": 5,
+    "regione": "Unima",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": "Si"
+  },
+  {
+    "id_univoco": 10001,
+    "id_pokedex_nazionale": 19,
+    "nome_originale": "Rattata",
+    "nome_storpiato": "Brettata",
+    "forma": "",
+    "tipi": [
+      "Buio",
+      "Normale"
+    ],
+    "generazione": 1,
+    "regione": "Alola",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 10033,
+    "id_pokedex_nazionale": 128,
+    "nome_originale": "Tauros",
+    "nome_storpiato": "Taubres",
+    "forma": "Varietà Aquatica",
+    "tipi": [
+      "Lotta",
+      "Acqua"
+    ],
+    "generazione": 1,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 10048,
+    "id_pokedex_nazionale": 549,
+    "nome_originale": "Lilligant",
+    "nome_storpiato": "Brelligant",
+    "forma": "",
+    "tipi": [
+      "Erba",
+      "Lotta"
+    ],
+    "generazione": 5,
+    "regione": "Hisui",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 10049,
+    "id_pokedex_nazionale": 550,
+    "nome_originale": "Basculin",
+    "nome_storpiato": "Bresculin",
+    "forma": "Forma Lineabianca",
+    "tipi": [
+      "Acqua"
+    ],
+    "generazione": 5,
+    "regione": "Hisui ",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 10051,
+    "id_pokedex_nazionale": 555,
+    "nome_originale": "Darmanitan",
+    "nome_storpiato": "Brermanitan",
+    "forma": "",
+    "tipi": [
+      "Ghiaccio"
+    ],
+    "generazione": 5,
+    "regione": "Galar",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 10052,
+    "id_pokedex_nazionale": 555,
+    "nome_originale": "Darmanitan",
+    "nome_storpiato": "Brermanitan",
+    "forma": "Stato Zen",
+    "tipi": [
+      "Ghiaccio",
+      "Fuoco"
+    ],
+    "generazione": 5,
+    "regione": "Galar",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 10059,
+    "id_pokedex_nazionale": 724,
+    "nome_originale": "Decidueye",
+    "nome_storpiato": "Brecidueye",
+    "forma": "",
+    "tipi": [
+      "Erba",
+      "Lotta"
+    ],
+    "generazione": 7,
+    "regione": "Hisui",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 20001,
+    "id_pokedex_nazionale": 0,
+    "nome_originale": "MissingNo.",
+    "nome_storpiato": "BressingNo.",
+    "forma": "Fossile Kabutops",
+    "tipi": [
+      "Acqua",
+      "Volante"
+    ],
+    "generazione": 1,
+    "regione": "Kanto",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 20031,
+    "id_pokedex_nazionale": 351,
+    "nome_originale": "Castform",
+    "nome_storpiato": "Castfobre",
+    "forma": "Forma Sole",
+    "tipi": [
+      "Fuoco"
+    ],
+    "generazione": 3,
+    "regione": "Hoenn",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 20034,
+    "id_pokedex_nazionale": 386,
+    "nome_originale": "Deoxys",
+    "nome_storpiato": "Breoxys",
+    "forma": "Forma Attacco",
+    "tipi": [
+      "Psico"
+    ],
+    "generazione": 3,
+    "regione": "Hoenn",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 20064,
+    "id_pokedex_nazionale": 550,
+    "nome_originale": "Basculin",
+    "nome_storpiato": "Bresculin",
+    "forma": "Forma Lineablu",
+    "tipi": [
+      "Acqua"
+    ],
+    "generazione": 5,
+    "regione": "Unima",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 20065,
+    "id_pokedex_nazionale": 555,
+    "nome_originale": "Darmanitan",
+    "nome_storpiato": "Brermanitan",
+    "forma": "Stato Zen",
+    "tipi": [
+      "Fuoco",
+      "Psico"
+    ],
+    "generazione": 5,
+    "regione": "Unima",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  }
+]
