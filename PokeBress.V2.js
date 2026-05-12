@@ -115,7 +115,7 @@ app.get('/pokebress', (req, res) => {
                 const emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
                 console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
                 // Formattazione richiesta: n° ID è emojiTipi Nome Emote
-                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome_storpiato} ${emotePkm}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
+                message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome_storpiato} ${emotePkm} , originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
             } else {
                 message = `il pokemon n° ${inputId} è ${emojiTipi} ${pokemon.nome_storpiato}, originario della regione di ${pokemon.regione} (gen. ${pokemon.generazione})`;
             }
@@ -152,9 +152,10 @@ app.get('/pokebress', (req, res) => {
             regione_string = ` di ${pokemon.regione}`;
         }
 
-        let emotePkm = '';
+        let emotePkm_string = '';
         if (emotePokemon[randomId]) {
-            emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
+            const emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
+            emotePkm_string = `emotePkm `;
             console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
         }    
 
@@ -163,16 +164,16 @@ app.get('/pokebress', (req, res) => {
 
         switch (pokemon.id_univoco) {
             case 549: // Lilligant 
-                message = `CONGRATULAZIONI!! ${emotePkm} ${emotePkm} Oggi sei ${pokemon.nome_storpiato}${shiny_string} ${emojiTipi} ${emotePkm} ${emotePkm} @bre90ss non snitchare e dagli il 💎 VIP 💎`;
+                message = `CONGRATULAZIONI!! ${emotePkm_string}${emotePkm_string} Oggi sei ${pokemon.nome_storpiato}${shiny_string} ${emojiTipi} ${emotePkm_string}${emotePkm_string} @bre90ss non snitchare e dagli il 💎 VIP 💎`;
                 break;
             case 10048: // Lilligant Hisui
                 message = `socio mi spiace, ti è andata male... Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, ma della regione di ${pokemon.regione} 😒😒😒 Qui vige il culto del solo ed unico bre90sLilliBre `;
                 break;
             case 6: // Charizard
-                message = `GG socio 🏅🏅 Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} ${emotePkm} , @benedetta_leone_ hai visto che alla fine il tuo pokemon preferito è spawnato?`;
+                message = `GG socio 🏅🏅 Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} ${emotePkm_string}, @benedetta_leone_ hai visto che alla fine il tuo pokemon preferito è spawnato?`;
                 break;
             default:
-                message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${regione_string}${forma_string}${shiny_string} ${emotePkm} , il pokemon n° ${pokemon.id_pokedex_nazionale} (gen. ${pokemon.generazione})`;
+                message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${regione_string}${forma_string}${shiny_string} ${emotePkm_string}, il pokemon n° ${pokemon.id_pokedex_nazionale} (gen. ${pokemon.generazione})`;
         }
 
         return res.send(message);
