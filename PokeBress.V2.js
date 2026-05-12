@@ -155,7 +155,7 @@ app.get('/pokebress', (req, res) => {
         let emotePkm_string = '';
         if (emotePokemon[randomId]) {
             const emotePkm = emotePokemon[pokemon.id_pokedex_nazionale].emote;
-            emotePkm_string = `emotePkm `;
+            emotePkm_string = `${emotePkm} `;
             console.log(`-> Emote ${emotePkm} richiesta per pokemon ${emotePokemon[pokemon.id_pokedex_nazionale].nome_pokemon} || fonte = ${emotePokemon[pokemon.id_pokedex_nazionale].fonte}`)
         }    
 
