@@ -61,6 +61,7 @@ try {
     console.error("⚠️ AVVISO: errore caricamento statistiche_random_pick.json:", err);
 }
 
+/* TBU - serve collegamento a DB esterno per questa parte
 // funzione per tracciare quante volte è spawnato un pokemon
 const incrementaContatore = (id) => {
     // Se l'ID non esiste ancora nel JSON delle statistiche, lo inizializziamo a 0
@@ -76,7 +77,7 @@ const incrementaContatore = (id) => {
         if (err) console.error("❌ Errore salvataggio statistiche:", err);
     });
 };
-
+*/
 
 //////////////////////////////////////////////////////////////////////////////////////
 // CORPO DEL CODICE
@@ -128,7 +129,9 @@ app.get('/pokebress', (req, res) => {
         const randomIndex = Math.floor(Math.random() * pokebressData.length);
         const pokemon = pokebressData[randomIndex];
         const randomId = pokemon.id_univoco;
+        /* TBU - serve collegamento a DB esterno per questa parte 
         incrementaContatore(randomId);
+        */
         const emojiTipi = getEmojiTipi(pokemon.tipi);
 
         let shiny_string = '';
@@ -172,6 +175,12 @@ app.get('/pokebress', (req, res) => {
             case 6: // Charizard
                 message = `GG socio 🏅🏅 Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} ${emotePkm_string}, @benedetta_leone_ hai visto che alla fine il tuo pokemon preferito è spawnato?`;
                 break;
+            case 656: // Froakie
+                message = `socio oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, scrivi !froakie in chat per salutare @Iz_Giando`;
+                break;
+            case 181: // Ampharos
+                message = `socio copertura di spalle MASSIMA: sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, il pokemon che aiuterà @bre90ss a vincere una lettera del medagliere (🚔🚔flame al gestore se ciò non accade🚔🚔)`;
+                break;
             default:
                 message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${regione_string}${forma_string}${shiny_string} ${emotePkm_string}, il pokemon n° ${pokemon.id_pokedex_nazionale} (gen. ${pokemon.generazione})`;
         }
@@ -197,6 +206,7 @@ app.get('/pokebress', (req, res) => {
         return res.send(`La repository è su github -> https://github.com/sc29-gls/Pokebress/blob/main`);
     }
 
+    /* TBU - mi serve un DB esterno a cui collegarmi
     // 6. VISUALIZZAZIONE TOP 3 ESTRATTI
     if (inputId === 'stats' && pokebressData.length > 0) {
         console.log(`Input "stats" -> Fornire TOP 3 pokemon estratti`)
@@ -221,6 +231,7 @@ app.get('/pokebress', (req, res) => {
         const messaggioTop3 = getTop3();
         return res.send(`🏆 TOP 3 BressMon spawnati -> ${messaggioTop3}`);
     }
+    */
 
     // 7. LOGICA INPUT ERRATO
     if (pokebressData.length > 0) {
