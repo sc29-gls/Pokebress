@@ -15282,7 +15282,7 @@
   {
     "id_univoco": 986,
     "id_pokedex_nazionale": 986,
-    "nome_originale": "Fungofurente",
+    "nome_originale": "Fungofurioso",
     "nome_storpiato": "Fungobrerioso",
     "forma": "",
     "tipi": [
@@ -15298,88 +15298,8 @@
   {
     "id_univoco": 987,
     "id_pokedex_nazionale": 987,
-    "nome_originale": "Saccoferreo",
-    "nome_storpiato": "Cribrealato",
-    "forma": "",
-    "tipi": [
-      "Ghiaccio",
-      "Acqua"
-    ],
-    "generazione": 9,
-    "regione": "Paldea",
-    "mega": "",
-    "gigamax": "",
-    "Varianti significative": ""
-  },
-  {
-    "id_univoco": 988,
-    "id_pokedex_nazionale": 988,
-    "nome_originale": "Alatira",
-    "nome_storpiato": "Alirabrenti",
-    "forma": "",
-    "tipi": [
-      "Spettro",
-      "Volante"
-    ],
-    "generazione": 9,
-    "regione": "Paldea",
-    "mega": "",
-    "gigamax": "",
-    "Varianti significative": ""
-  },
-  {
-    "id_univoco": 989,
-    "id_pokedex_nazionale": 989,
-    "nome_originale": "Manoferrea",
-    "nome_storpiato": "Breldisabbia",
-    "forma": "",
-    "tipi": [
-      "Lotta",
-      "Elettro"
-    ],
-    "generazione": 9,
-    "regione": "Paldea",
-    "mega": "",
-    "gigamax": "",
-    "Varianti significative": ""
-  },
-  {
-    "id_univoco": 990,
-    "id_pokedex_nazionale": 990,
-    "nome_originale": "Colloferreo",
-    "nome_storpiato": "Solcobrerreo",
-    "forma": "",
-    "tipi": [
-      "Buio",
-      "Volante"
-    ],
-    "generazione": 9,
-    "regione": "Paldea",
-    "mega": "",
-    "gigamax": "",
-    "Varianti significative": ""
-  },
-  {
-    "id_univoco": 991,
-    "id_pokedex_nazionale": 991,
-    "nome_originale": "Feroferreo",
-    "nome_storpiato": "Saccobrerreo",
-    "forma": "",
-    "tipi": [
-      "Terra",
-      "Acciaio"
-    ],
-    "generazione": 9,
-    "regione": "Paldea",
-    "mega": "",
-    "gigamax": "",
-    "Varianti significative": ""
-  },
-  {
-    "id_univoco": 992,
-    "id_pokedex_nazionale": 992,
     "nome_originale": "Crinealato",
-    "nome_storpiato": "Manobrerrea",
+    "nome_storpiato": "Cribrealato",
     "forma": "",
     "tipi": [
       "Spettro",
@@ -15392,26 +15312,10 @@
     "Varianti significative": ""
   },
   {
-    "id_univoco": 993,
-    "id_pokedex_nazionale": 993,
-    "nome_originale": "Spalleferree",
-    "nome_storpiato": "Collobrerreo",
-    "forma": "",
-    "tipi": [
-      "Fuoco",
-      "Veleno"
-    ],
-    "generazione": 9,
-    "regione": "Paldea",
-    "mega": "",
-    "gigamax": "",
-    "Varianti significative": ""
-  },
-  {
-    "id_univoco": 994,
-    "id_pokedex_nazionale": 994,
-    "nome_originale": "Striscianselce",
-    "nome_storpiato": "Falenabrerrea",
+    "id_univoco": 988,
+    "id_pokedex_nazionale": 988,
+    "nome_originale": "Alirasenti",
+    "nome_storpiato": "Alirabrenti",
     "forma": "",
     "tipi": [
       "Coleottero",
@@ -15424,14 +15328,110 @@
     "Varianti significative": ""
   },
   {
+    "id_univoco": 989,
+    "id_pokedex_nazionale": 989,
+    "nome_originale": "Peldisabbia",
+    "nome_storpiato": "Breldisabbia",
+    "forma": "",
+    "tipi": [
+      "Elettro",
+      "Terra"
+    ],
+    "generazione": 9,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 990,
+    "id_pokedex_nazionale": 990,
+    "nome_originale": "Solcoferreo",
+    "nome_storpiato": "Solcobrerreo",
+    "forma": "",
+    "tipi": [
+      "Terra",
+      "Acciaio"
+    ],
+    "generazione": 9,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 991,
+    "id_pokedex_nazionale": 991,
+    "nome_originale": "Saccoferreo",
+    "nome_storpiato": "Saccobrerreo",
+    "forma": "",
+    "tipi": [
+      "Ghiaccio",
+      "Acqua"
+    ],
+    "generazione": 9,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 992,
+    "id_pokedex_nazionale": 992,
+    "nome_originale": "Manoferrea",
+    "nome_storpiato": "Manobrerrea",
+    "forma": "",
+    "tipi": [
+      "Lotta",
+      "Elettro"
+    ],
+    "generazione": 9,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 993,
+    "id_pokedex_nazionale": 993,
+    "nome_originale": "Colloferreo",
+    "nome_storpiato": "Collobrerreo",
+    "forma": "",
+    "tipi": [
+      "Buio",
+      "Volante"
+    ],
+    "generazione": 9,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
+    "id_univoco": 994,
+    "id_pokedex_nazionale": 994,
+    "nome_originale": "Falenaferrea",
+    "nome_storpiato": "Falenabrerrea",
+    "forma": "",
+    "tipi": [
+      "Fuoco",
+      "Veleno"
+    ],
+    "generazione": 9,
+    "regione": "Paldea",
+    "mega": "",
+    "gigamax": "",
+    "Varianti significative": ""
+  },
+  {
     "id_univoco": 995,
     "id_pokedex_nazionale": 995,
-    "nome_originale": "Eroeferreo",
+    "nome_originale": "Spineferree",
     "nome_storpiato": "Spinebrerree",
     "forma": "",
     "tipi": [
-      "Folletto",
-      "Lotta"
+      "Roccia",
+      "Elettro"
     ],
     "generazione": 9,
     "regione": "Paldea",
@@ -15585,7 +15585,7 @@
   {
     "id_univoco": 1005,
     "id_pokedex_nazionale": 1005,
-    "nome_originale": "Ruggitoluna",
+    "nome_originale": "Lunaruggente",
     "nome_storpiato": "Lunaruggenbre",
     "forma": "",
     "tipi": [
@@ -15601,12 +15601,12 @@
   {
     "id_univoco": 1006,
     "id_pokedex_nazionale": 1006,
-    "nome_originale": "Miroferreo",
+    "nome_originale": "Eroeferreo",
     "nome_storpiato": "Breroeferreo",
     "forma": "",
     "tipi": [
-      "Acciaio",
-      "Veleno"
+      "Folletto",
+      "Lotta"
     ],
     "generazione": 9,
     "regione": "Paldea",
@@ -15778,8 +15778,8 @@
     "id_univoco": 1017,
     "id_pokedex_nazionale": 1017,
     "nome_originale": "Ogerpon",
-    "nome_storpiato": "Obrerpon- Maschera Turchese",
-    "forma": "",
+    "nome_storpiato": "Obrerpon",
+    "forma": "Maschera Turchese",
     "tipi": [
       "Erba"
     ],
@@ -15840,7 +15840,7 @@
   {
     "id_univoco": 1021,
     "id_pokedex_nazionale": 1021,
-    "nome_originale": "Furfaltero",
+    "nome_originale": "Furiatonante",
     "nome_storpiato": "Furiatonanbre",
     "forma": "",
     "tipi": [
@@ -15856,11 +15856,11 @@
   {
     "id_univoco": 1022,
     "id_pokedex_nazionale": 1022,
-    "nome_originale": "Corona Tonante",
+    "nome_originale": "Massoferreo",
     "nome_storpiato": "Massobrerreo",
     "forma": "",
     "tipi": [
-      "Fuoco",
+      "Roccia",
       "Psico"
     ],
     "generazione": 9,
