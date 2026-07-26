@@ -173,7 +173,7 @@ app.get('/pokebress', (req, res) => {
                 message = `socio mi spiace, ti è andata male... Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, ma della regione di ${pokemon.regione} 😒😒😒 Qui vige il culto del solo ed unico bre90sLilliBre `;
                 break;
             case 6: // Charizard
-                message = `GG socio 🏅🏅 Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} ${emotePkm_string}, @benedetta_leone_ hai visto che alla fine il tuo pokemon preferito è spawnato?`;
+                message = `GG socio 🏅🏅 Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} ${emotePkm_string}, @benedetta_leone_ sarà fiera di te! Mandale uno screen su !discord qualora non sia qui in chat`;
                 break;
             case 656: // Froakie
                 message = `socio oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, scrivi !froakie in chat per salutare @Iz_Giando`;
@@ -185,7 +185,7 @@ app.get('/pokebress', (req, res) => {
                 message = `ZIG ZIG ZIG ZIG ZIG ZIG ZIG ZIG abbiamo ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, sei entrato nelle grazie di @palmoziggozaggo ZIG ZIG ZIG ZIG ZIG ZIG ZIG ZIG`;
                 break;
             case 10043: // Zigzagoon di Galar
-                message = `socio ti è andata male... Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} della regione di ${pokemon.regione} 😒😒😒 (lo ${pokemon.nome_storpiato}${shiny_string} di WISH)`;
+                message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} della regione di ${pokemon.regione} 😒😒😒 (lo ${pokemon.nome_storpiato}${shiny_string} di WISH in poche parole...)`;
                 break;
 			case 128: // Tauros
                 message = `MADÒ ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} FULL SPECIALE CON BOOMBURST STAB 🔊 🔊 🔊`;
