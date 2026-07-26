@@ -181,6 +181,15 @@ app.get('/pokebress', (req, res) => {
             case 181: // Ampharos
                 message = `socio copertura di spalle MASSIMA: sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, il pokemon che aiuterà @bre90ss a vincere una lettera del medagliere (🚔🚔flame al gestore se ciò non accade🚔🚔)`;
                 break;
+            case 263: // Zigzagoon
+                message = `ZIG ZIG ZIG ZIG ZIG ZIG ZIG ZIG abbiamo ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string}, sei entrato nelle grazie di @palmoziggozaggo ZIG ZIG ZIG ZIG ZIG ZIG ZIG ZIG`;
+                break;
+            case 10043: // Zigzagoon di Galar
+                message = `socio ti è andata male... Oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} della regione di ${pokemon.regione} 😒😒😒 (lo ${pokemon.nome_storpiato}${shiny_string} di WISH)`;
+                break;
+			case 128: // Tauros
+                message = `MADÒ ${emojiTipi} ${pokemon.nome_storpiato}${shiny_string} FULL SPECIALE CON BOOMBURST STAB 🔊 🔊 🔊`;
+                break;
             default:
                 message = `oggi sei ${emojiTipi} ${pokemon.nome_storpiato}${regione_string}${forma_string}${shiny_string} ${emotePkm_string}, il pokemon n° ${pokemon.id_pokedex_nazionale} (gen. ${pokemon.generazione})`;
         }
